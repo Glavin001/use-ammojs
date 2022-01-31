@@ -58,6 +58,8 @@ interface AmmoPhysicsProps {
 
 const DEFAULT_DEBUG_MODE = { DrawWireframe: true };
 
+export { AmmoDebugOptions };
+
 export function Physics({
   drawDebug,
   drawDebugMode = DEFAULT_DEBUG_MODE,
