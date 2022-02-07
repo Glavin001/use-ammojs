@@ -54,6 +54,17 @@ const Home: NextPage = () => {
           </a>
 
           <a
+            href="/compound"
+            className={styles.card}
+            target="_blank"
+          >
+            <h2>Compound &rarr;</h2>
+            <p>
+              Create complex collision shapes with a compound shape.
+            </p>
+          </a>
+
+          <a
             href="/gears"
             className={styles.card}
             target="_blank"

@@ -4,7 +4,7 @@ import { BodyType, BufferState, SharedBuffers } from "../three-ammo/lib/types";
 import { BUFFER_CONFIG } from "../three-ammo/lib/constants";
 import { PhysicsPerformanceInfo, PhysicsState } from "./physics-context";
 import { BufferAttribute, Matrix4, Vector3 } from "three";
-import { MutableRefObject } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 
 interface PhysicsUpdateProps {
@@ -44,20 +44,21 @@ export function PhysicsUpdate({
 
     const sharedBuffers = sharedBuffersRef.current;
 
-    if (
-      // Check if the worker is finished with the buffer
-      (!isSharedArrayBufferSupported &&
-        sharedBuffers.rigidBodies.objectMatricesFloatArray.byteLength !== 0) ||
-      (isSharedArrayBufferSupported &&
-        Atomics.load(sharedBuffers.rigidBodies.headerIntArray, 0) ===
-          BufferState.READY)
-    ) {
+    // Check if the worker is finished with the buffer
+    const isReady = (!isSharedArrayBufferSupported
+        && sharedBuffers.rigidBodies.objectMatricesFloatArray.byteLength !== 0)
+      || (isSharedArrayBufferSupported
+        && Atomics.load(sharedBuffers.rigidBodies.headerIntArray, 0) === BufferState.READY)
+
+    if (isReady) {
       const lastSubstep = physicsPerformanceInfoRef.current.substepCounter;
 
       physicsPerformanceInfoRef.current.lastTickMs =
         sharedBuffers.rigidBodies.headerFloatArray[1];
       physicsPerformanceInfoRef.current.substepCounter =
         sharedBuffers.rigidBodies.headerIntArray[2];
+      physicsPerformanceInfoRef.current.fps =
+        sharedBuffers.rigidBodies.headerFloatArray[3];
 
       while (threadSafeQueueRef.current.length) {
         const fn = threadSafeQueueRef.current.shift();

@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Quaternion, Vector3 } from "three";
 import { toBtQuaternion } from "../three-ammo/worker/utils";
 import { ShapeConfig, ShapeFit, ShapeType } from "../three-ammo/lib/types";
+import { notEmpty } from "../utils/notEmpty";
 
 export interface FinalizedShape extends Ammo.btCollisionShape {
   type: ShapeType;
@@ -58,10 +59,32 @@ export function createCollisionShapes(
       );
     case ShapeType.HEIGHTFIELD:
       return createHeightfieldTerrainShape(options);
+    case ShapeType.COMPOUND:
+        return createCompoundShape(
+          createShapesFromOptions(options),
+          options
+        );
     default:
       console.warn(options.type + " is not currently supported");
       return null;
   }
+}
+
+function createShapesFromOptions(options: ShapeConfig): FinalizedShape[] {
+  const shapeOptions = options.shapes || [];
+  const shapes = shapeOptions.map((shapeOptions) => {
+   return createCollisionShapes(
+     undefined,
+     undefined,
+     undefined,
+     undefined,
+     {
+       fit: ShapeFit.MANUAL,
+       ...shapeOptions,
+     },
+   )
+  }).filter(notEmpty);
+  return shapes;
 }
 
 export function createCompoundShape(
@@ -69,7 +92,6 @@ export function createCompoundShape(
   options: ShapeConfig
 ): FinalizedShape {
   const compoundShape = new Ammo.btCompoundShape(true);
-
   for (const shape of shapes) {
     compoundShape.addChildShape(shape.localTransform, shape);
   }
@@ -266,8 +288,18 @@ export const createHullShape = (function () {
     _setOptions(options);
 
     if (options.fit === ShapeFit.MANUAL) {
-      console.warn("cannot use fit: manual with type: hull");
-      return null;
+      const { margin = 0, points = [] } = options;
+      const scale = new THREE.Vector3(1, 1, 1);
+      const hull = new Ammo.btConvexHullShape();
+      hull.setMargin(margin);
+      points.forEach((point, pointIndex) => {
+        const btVertex = new Ammo.btVector3();
+        btVertex.setValue(point.x, point.y, point.z);
+        const isLast = pointIndex === points.length - 1;
+        hull.addPoint(btVertex, isLast);
+        Ammo.destroy(btVertex);
+      })
+      return finishCollisionShape(hull, options, scale);
     }
 
     const bounds = _computeBounds(vertices, matrices);
@@ -378,20 +410,20 @@ export const createHACDShapes = (function () {
     // @ts-ignore
     const hacd = new Ammo.HACD();
     if (options.hasOwnProperty("compacityWeight"))
-      hacd.SetCompacityWeight(options.compacityWeight);
+      hacd.SetCompacityWeight(options.compacityWeight!);
     if (options.hasOwnProperty("volumeWeight"))
-      hacd.SetVolumeWeight(options.volumeWeight);
+      hacd.SetVolumeWeight(options.volumeWeight!);
     if (options.hasOwnProperty("nClusters"))
-      hacd.SetNClusters(options.nClusters);
+      hacd.SetNClusters(options.nClusters!);
     if (options.hasOwnProperty("nVerticesPerCH"))
-      hacd.SetNVerticesPerCH(options.nVerticesPerCH);
+      hacd.SetNVerticesPerCH(options.nVerticesPerCH!);
     if (options.hasOwnProperty("concavity"))
-      hacd.SetConcavity(options.concavity);
+      hacd.SetConcavity(options.concavity!);
 
     const points = Ammo._malloc(vertexCount * 3 * 8);
     const triangles = Ammo._malloc(triCount * 3 * 4);
-    hacd.SetPoints(points);
-    hacd.SetTriangles(triangles);
+    hacd.SetPoints(points as any);
+    hacd.SetTriangles(triangles as any);
     hacd.SetNPoints(vertexCount);
     hacd.SetNTriangles(triCount);
 
@@ -438,7 +470,7 @@ export const createHACDShapes = (function () {
       const nTriangles = hacd.GetNTrianglesCH(i);
       const hullPoints = Ammo._malloc(nPoints * 3 * 8);
       const hullTriangles = Ammo._malloc(nTriangles * 3 * 4);
-      hacd.GetCH(i, hullPoints, hullTriangles);
+      hacd.GetCH(i, hullPoints as any, hullTriangles as any);
 
       const pptr = hullPoints / 8;
       for (let pi = 0; pi < nPoints; pi++) {
@@ -509,7 +541,7 @@ export const createVHACDShapes = (function () {
       params.set_m_resolution(options.resolution);
     if (options.hasOwnProperty("depth")) params.set_m_depth(options.depth);
     if (options.hasOwnProperty("concavity"))
-      params.set_m_concavity(options.concavity);
+      params.set_m_concavity(options.concavity!);
     if (options.hasOwnProperty("planeDownsampling"))
       params.set_m_planeDownsampling(options.planeDownsampling);
     if (options.hasOwnProperty("convexhullDownsampling"))
@@ -560,14 +592,13 @@ export const createVHACDShapes = (function () {
         }
       }
     }
-    vhacd.Compute(points, 3, vertexCount, triangles, 3, triCount, params);
+    vhacd.Compute(points as any, 3, vertexCount, triangles as any, 3, triCount, params);
     Ammo._free(points);
     Ammo._free(triangles);
     const nHulls = vhacd.GetNConvexHulls();
 
     const shapes: FinalizedShape[] = [];
-    // @ts-ignore
-    const ch = new Ammo.ConvexHull();
+    const ch: any = new Ammo.ConvexHull();
     for (let i = 0; i < nHulls; i++) {
       vhacd.GetConvexHull(i, ch);
       const nPoints = ch.get_m_nPoints();
@@ -578,9 +609,9 @@ export const createVHACDShapes = (function () {
 
       for (let pi = 0; pi < nPoints; pi++) {
         const btVertex = new Ammo.btVector3();
-        const px = ch.get_m_points(pi * 3 + 0);
-        const py = ch.get_m_points(pi * 3 + 1);
-        const pz = ch.get_m_points(pi * 3 + 2);
+        const px: any = ch.get_m_points(pi * 3 + 0);
+        const py: any = ch.get_m_points(pi * 3 + 1);
+        const pz: any = ch.get_m_points(pi * 3 + 2);
         btVertex.setValue(px, py, pz);
         hull.addPoint(btVertex, pi === nPoints - 1);
         Ammo.destroy(btVertex);

@@ -7,6 +7,7 @@ import { BodyType, Physics, PhysicsStats, ShapeType, SoftBodyType, usePhysics, u
 
 import { gear } from './gear'
 import { CSG2Geom as csgToGeometry } from './csg-2-geo'
+import gearCollisionPoints from './gear-collision.json';
 
 export const Gear = React.forwardRef((props, ref) => {
   const options = {
@@ -17,17 +18,28 @@ export const Gear = React.forwardRef((props, ref) => {
     thickness: 0.25,
     centerholeradius: 0.125,
     ...props,
-  }
+  };
 
   const csgGeometry = useMemo(() => csgToGeometry(gear(options)), [JSON.stringify(options)])
+  const hullShapes = useMemo(() => gearCollisionPoints.map(shapePoints => ({
+    type: ShapeType.HULL,
+    points: shapePoints.map(p => {
+      return [
+        p[0] + 0,
+        p[1] + 0,
+        p[2] + 0.125,
+      ];
+    }),
+  })), [gearCollisionPoints]);
 
   const [groupRef] = useRigidBody(() => ({
     bodyType: BodyType.DYNAMIC,
     mass: 1,
-    shapeType: ShapeType.VHACD,
+    // shapeType: ShapeType.VHACD,
+    shapeType: ShapeType.COMPOUND,
     enableCCD: true,
     shapeConfig: {
-      type: ShapeType.VHACD,
+      // type: ShapeType.VHACD,
       pca: 1,
       // resolution: 1000000, // 1000000
       depth: 5, // 20
@@ -37,9 +49,12 @@ export const Gear = React.forwardRef((props, ref) => {
       // volumeWeight: 0.1,
       // compacityWeight: 0.1,
       // maxNumVerticesPerCH: 10,
+      shapes: hullShapes,
+      // offset: [0, 2, 0],
+      // offset: { x: 0, y: 0, z: -0.1 },
     },
     ...props
-  }), null, ref);
+  }), ref, []);
 
   return (
     <mesh geometry={csgGeometry} ref={groupRef}>

@@ -445,13 +445,14 @@
     utility-types "^3.10.0"
     zustand "^3.5.1"
 
-"@react-three/xr@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@react-three/xr/-/xr-3.2.0.tgz#a53a34605883785b0f04d77a716ae38d75dec1b9"
-  integrity sha512-AjemVDCoZGH7+dV4cU+ZmWQ+6Ullord2D2sQU+1sGEs0OWnvaoPB6UVfaOjY/fAxpriE7QVaFJCPrb7AdKViOw==
+"@react-three/xr@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@react-three/xr/-/xr-3.3.0.tgz#26f50f3dec066529b49e629d8a08e1b75e060577"
+  integrity sha512-mFCyBAKIg3Lsk7geDI42KOoyvHpaXSaCZf4bHfFxsDz73Wz3LuD03K9Ey5aQ9bCiK7xcNO2okVGy17chnxtgvQ==
   dependencies:
     "@webxr-input-profiles/motion-controllers" "^1.0.0"
     react-merge-refs "^1.1.0"
+    three-stdlib "^2.7.2"
 
 "@rushstack/eslint-patch@^1.0.8":
   version "1.1.0"
@@ -2380,6 +2381,23 @@ three-stdlib@^2.4.0, three-stdlib@^2.6.1:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.7.2.tgz#801a530e93f82dfdd8e2b0856cd4ef5fd73e9247"
   integrity sha512-6jtdJVZOcA+6xE+/YnuOZ8eCuhQhDi4eZ6XKFGYiUDEVTrAFTehScqhWxdchaPGNEEAqSCuXGwSd14m397xr7w==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@webgpu/glslang" "^0.0.15"
+    "@webxr-input-profiles/motion-controllers" "^1.0.0"
+    chevrotain "^9.0.2"
+    draco3d "^1.4.1"
+    fflate "^0.6.9"
+    ktx-parse "^0.2.1"
+    mmd-parser "^1.0.4"
+    opentype.js "^1.3.3"
+    potpack "^1.0.1"
+    zstddec "^0.0.2"
+
+three-stdlib@^2.7.2:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.8.4.tgz#066a26b18d9f1db0dccd915d9164fd3f8b50e1bb"
+  integrity sha512-TsDidKnITAhU38b6KfaLBNfcyTChANJW9mNw2Ds+Pz8BWSkDPoLQKZVJdcMsnP4+QXjRB3y95cbNYXB/3KF4uw==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@webgpu/glslang" "^0.0.15"

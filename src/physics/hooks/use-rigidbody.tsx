@@ -1,21 +1,29 @@
 import { Euler, MathUtils, Object3D, Quaternion, Vector3 } from "three";
 import React, { DependencyList, MutableRefObject, Ref, useEffect, useState } from "react";
+
 import { useAmmoPhysicsContext } from "../physics-context";
 import {
   BodyConfig,
   BodyType,
+  RotationTypes,
   ShapeConfig,
   ShapeType,
+  Triplet,
+  Vector3Types,
 } from "../../three-ammo/lib/types";
 import { createRigidBodyApi, RigidbodyApi } from "../api/rigidbody-api";
 import {
   isEuler,
   isQuaternion,
+  isSerializedQuaternion,
+  isSerializedVector3,
   isVector3,
 } from "../../three-ammo/worker/utils";
 import { useForwardedRef } from "../../utils/useForwardedRef";
+import { isRef } from "../../utils/isRef";
+import { serializedVector3 } from "../../utils/serialize";
 
-export type UseRigidBodyOptions = Omit<BodyConfig, "type"> & {
+export type UseRigidBodyOptions = Omit<BodyConfig<Vector3Types>, "type"> & {
   shapeType: ShapeType;
   bodyType?: BodyType;
 
@@ -23,23 +31,19 @@ export type UseRigidBodyOptions = Omit<BodyConfig, "type"> & {
   mesh?: Object3D;
 
   // use for manual overrides with the physics shape.
-  shapeConfig?: Omit<ShapeConfig, "type">;
+  shapeConfig?: Omit<ShapeConfig<Vector3Types>, "type">;
 
-  position?: Vector3 | [number, number, number];
+  position?: Vector3Types;
 
-  rotation?:
-    | Euler
-    | [number, number, number]
-    | [number, number, number, string]
-    | Quaternion;
+  rotation?: RotationTypes;
 };
 
 export function useRigidBody(
   options: UseRigidBodyOptions | (() => UseRigidBodyOptions),
-  object3D?: Object3D,
-  fwdRef?: Ref<Object3D>,
+  fwdRefOrObject3D?: Ref<Object3D> | Object3D,
   deps: DependencyList = []
 ): [MutableRefObject<Object3D | null>, RigidbodyApi] {
+  const fwdRef = isRef(fwdRefOrObject3D) ? fwdRefOrObject3D : undefined;
   const ref = useForwardedRef<Object3D>(fwdRef);
 
   const physicsContext = useAmmoPhysicsContext();
@@ -48,7 +52,12 @@ export function useRigidBody(
   const [bodyUUID] = useState(() => MathUtils.generateUUID());
 
   useEffect(() => {
+    // For backwards compatibility
+    const object3D = isRef(fwdRefOrObject3D) ? undefined : fwdRefOrObject3D;
     const objectToUse = object3D ? object3D : ref.current!;
+    if (!objectToUse) {
+      throw new Error("useRigidBody ref does not contain a object");
+    }
 
     if (typeof options === "function") {
       options = options();
@@ -64,7 +73,7 @@ export function useRigidBody(
     } = options;
 
     if (position) {
-      if (isVector3(position)) {
+      if (isVector3(position) || isSerializedVector3(position)) {
         objectToUse.position.set(position.x, position.y, position.z);
       } else if (position.length === 3) {
         objectToUse.position.set(position[0], position[1], position[2]);
@@ -80,6 +89,9 @@ export function useRigidBody(
         objectToUse.rotation.copy(rotation);
       } else if (isQuaternion(rotation)) {
         objectToUse.rotation.setFromQuaternion(rotation);
+      } else if (isSerializedQuaternion(rotation)) {
+        const q = new Quaternion(rotation[0], rotation[1], rotation[2], rotation[3]);
+        objectToUse.rotation.setFromQuaternion(q);
       } else if (rotation.length === 3 || rotation.length === 4) {
         objectToUse.rotation.set(
           rotation[0],
@@ -94,10 +106,6 @@ export function useRigidBody(
       objectToUse.updateMatrixWorld();
     }
 
-    if (!objectToUse) {
-      throw new Error("useRigidBody ref does not contain a object");
-    }
-
     const meshToUse = mesh ? mesh : objectToUse;
 
     addRigidBody(
@@ -105,15 +113,15 @@ export function useRigidBody(
       objectToUse,
       {
         meshToUse,
-        shapeConfig: {
+        shapeConfig: normalizeShapeConfig({
           type: shapeType,
           ...shapeConfig,
-        },
+        }),
       },
-      {
+      normalizeBodyConfig({
         type: bodyType,
         ...rest,
-      }
+      }),
     );
 
     return () => {
@@ -124,7 +132,26 @@ export function useRigidBody(
   return [ref, createRigidBodyApi(physicsContext, bodyUUID)];
 }
 
+function normalizeShapeConfig(shapeConfig: ShapeConfig<Vector3Types>): ShapeConfig {
+  return {
+    ...shapeConfig,
+    offset: shapeConfig.offset && serializedVector3(shapeConfig.offset),
+    halfExtents: shapeConfig.halfExtents && serializedVector3(shapeConfig.halfExtents),
+    points: shapeConfig.points && shapeConfig.points.map(serializedVector3),
+    shapes: shapeConfig.shapes && shapeConfig.shapes.map(normalizeShapeConfig),
+  };
+}
+
+function normalizeBodyConfig(bodyConfig: BodyConfig<Vector3Types>): BodyConfig {
+  return {
+    ...bodyConfig,
+    gravity: bodyConfig.gravity && serializedVector3(bodyConfig.gravity),
+    angularFactor: bodyConfig.angularFactor && serializedVector3(bodyConfig.angularFactor),
+  };
+}
+
+
 /**
- * @deprecated use useRigidBody instead
+ * @deprecated Use {@link useRigidBody} instead
  */
 export const usePhysics = useRigidBody;

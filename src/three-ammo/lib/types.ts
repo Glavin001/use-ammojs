@@ -1,4 +1,4 @@
-import { Object3D, Quaternion, Vector3 } from "three";
+import { Euler, Object3D, Quaternion, Vector3 } from "three";
 import { MutableRefObject } from "react";
 
 export type UUID = string;
@@ -40,14 +40,28 @@ export enum BodyType {
   KINEMATIC = "kinematic",
 }
 
-export interface BodyConfig {
+export type Vector3Tuple = [x: number, y: number, z: number];
+export type Triplet = Vector3Tuple;
+export type Quad = [x: number, y: number, z: number, w: number]
+export type EulerTuple = [number, number, number, string];
+
+export type Vector3Types = Vector3 | SerializedVector3 | Vector3Tuple
+export type RotationTypes =
+  | Euler
+  | Vector3Tuple
+  | EulerTuple
+  | SerializedQuaternion
+  | Quaternion
+  ;
+
+export interface BodyConfig<Vector3Type = SerializedVector3> {
   loadedEvent?: string;
 
   // default = 1
   mass?: number;
 
   // default = world.gravity
-  gravity?: Vector3;
+  gravity?: Vector3Type;
 
   enableCCD?: boolean;
   // e.g. 1e-7
@@ -69,7 +83,7 @@ export interface BodyConfig {
   angularSleepingThreshold?: number;
 
   // default = (1,1,1)
-  angularFactor?: Vector3;
+  angularFactor?: Vector3Type;
 
   // default = active
   activationState?: BodyActivationState;
@@ -223,7 +237,7 @@ export enum ShapeFit {
   MANUAL = "manual",
 }
 
-export interface ShapeConfig {
+export interface ShapeConfig<Vector3Type = SerializedVector3> {
   type: ShapeType;
 
   // default 0
@@ -232,7 +246,7 @@ export interface ShapeConfig {
   // default false
   includeInvisible?: boolean;
 
-  offset?: Vector3;
+  offset?: Vector3Type;
 
   orientation?: Quaternion;
 
@@ -240,7 +254,7 @@ export interface ShapeConfig {
   fit?: ShapeFit;
 
   // Only used with fit=MANUAL
-  halfExtents?: Vector3;
+  halfExtents?: Vector3Type;
   // Only used with fit=ALL
   minHalfExtents?: number;
   maxHalfExtents?: number;
@@ -258,6 +272,7 @@ export interface ShapeConfig {
 
   // Only used with ShapeType hull, default 100000
   hullMaxVertices?: number;
+  points?: Vector3Type[];
 
   // Only used with ShapeType HACD
   compacityWeight?: number;
@@ -296,6 +311,9 @@ export interface ShapeConfig {
   heightDataType?: "short" | "float";
   // default true
   flipQuadEdges?: boolean;
+
+  // Compound
+  shapes?: Omit<ShapeConfig<Vector3Type>, 'shapes'>[];
 }
 
 // https://pybullet.org/Bullet/BulletFull/classbtTypedConstraint.html
@@ -354,7 +372,7 @@ export enum ConstraintType {
   SLIDER = "slider",
 }
 
-interface ConeTwistConstraintDynamicConfig {
+export interface ConeTwistConstraintDynamicConfig {
   type: ConstraintType.CONE_TWIST;
 
   angularOnly?: boolean;
@@ -374,7 +392,7 @@ interface ConeTwistConstraintDynamicConfig {
   fixThresh?: number;
 }
 
-interface Generic6DOFDynamicConfig {
+export interface Generic6DOFDynamicConfig {
   type: ConstraintType.GENERIC_6_DOF;
 
   linearLowerLimit?: Vector3;
@@ -382,7 +400,7 @@ interface Generic6DOFDynamicConfig {
   angularLowerLimit?: Vector3;
   angularUpperLimit?: Vector3;
 }
-interface Generic6DOFSpringDynamicConfig extends Omit<Generic6DOFDynamicConfig, 'type'> {
+export interface Generic6DOFSpringDynamicConfig extends Omit<Generic6DOFDynamicConfig, 'type'> {
   type: ConstraintType.GENERIC_6_DOF_SPRING;
 
   springEnabled?: [boolean, boolean, boolean, boolean, boolean, boolean];
@@ -391,7 +409,7 @@ interface Generic6DOFSpringDynamicConfig extends Omit<Generic6DOFDynamicConfig, 
   damping?: [number, number, number, number, number, number];
 }
 
-interface HingeDynamicConfig {
+export interface HingeDynamicConfig {
   type: ConstraintType.HINGE;
 
   angularOnly?: boolean;
@@ -408,19 +426,19 @@ interface HingeDynamicConfig {
   // getHingeAngle()
 }
 
-interface FixedDynamicConfig {
+export interface FixedDynamicConfig {
   type: ConstraintType.FIXED;
 
   // nothing to configure
 }
 
-interface PointToPointDynamicConfig {
+export interface PointToPointDynamicConfig {
   type: ConstraintType.POINT_TO_POINT;
 
   // nothing to configure
 }
 
-interface SliderDynamicConfig {
+export interface SliderDynamicConfig {
   type: ConstraintType.SLIDER;
 
   linearLowerLimit?: number;
@@ -464,7 +482,7 @@ export type DynamicConstraintConfig =
   | PointToPointDynamicConfig
   | SliderDynamicConfig;
 
-export type SerializedVector3 = { x: number; y: number; z: number };
+export type SerializedVector3 = Pick<Vector3, 'x' | 'y' | 'z'>;
 
 export type SerializedQuaternion = {
   _x: number;

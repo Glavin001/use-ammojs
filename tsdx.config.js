@@ -1,5 +1,6 @@
 const workerLoader = require("rollup-plugin-web-worker-loader");
 const url = require("@rollup/plugin-url");
+// const { visualizer } = require('rollup-plugin-visualizer');
 
 module.exports = {
   // This function will run for each entry/format/env combination
@@ -18,9 +19,12 @@ module.exports = {
         targetPlatform: "browser",
         extensions: [".js", ".ts"],
         external: [],
-        sourcemap: true,
+        // sourcemap: true,
+        // inline: false,
       })
     );
+
+    // config.plugins.push(visualizer());
 
     // prevent web worker from being ignored
     const oldExternal = config.external;

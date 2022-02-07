@@ -81,6 +81,7 @@ export function Physics({
   const physicsPerformanceInfoRef = useRef<PhysicsPerformanceInfo>({
     substepCounter: 0,
     lastTickMs: 0,
+    fps: 0,
   });
 
   useEffect(() => {

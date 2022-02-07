@@ -10,12 +10,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch --format esm",
-    "build": "tsdx build --format esm",
-    "prepare": "tsdx build",
+    "start": "NODE_OPTIONS='--max-old-space-size=8192' tsdx watch --format esm",
+    "build": "node --max-old-space-size=12288 ./node_modules/.bin/tsdx build --format esm --entry src/index.tsx",
+    "prepare": "NODE_OPTIONS='--max-old-space-size=8192' tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "build:ammo": "cd src/three-ammo/lib/ammo.js/ && docker-compose up --build"
+    "build:ammo": "yarn build:ammo:js && yarn build:ammo:types",
+    "build:ammo:js": "cd src/three-ammo/lib/ammo.js/ && docker-compose up --build",
+    "build:ammo:types": "cd src/three-ammo/lib/ammo.js/ && npm run types",
+    "docs": "typedoc"
   },
   "husky": {
     "hooks": {
@@ -41,25 +44,37 @@
     "@react-three/fiber": "^7.0.6",
     "@rollup/plugin-url": "^6.1.0",
     "@size-limit/preset-small-lib": "^4.10.2",
+    "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/three": "^0.131.0",
-    "ammojs-typed": "^1.0.6",
     "husky": "^6.0.0",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rollup-plugin-visualizer": "^5.5.4",
     "rollup-plugin-web-worker-loader": "^1.6.1",
     "size-limit": "^4.10.2",
     "three": "^0.132.2",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0",
+    "tslib": "^2.2.0",
+    "typedoc": "^0.22.11",
     "typescript": "^4.2.3"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^5.4.0",
+    "**/@typescript-eslint/parser": "^5.4.0",
+    "**/jest": "^27.3.1",
+    "**/ts-jest": "^27.0.7",
+    "typescript": "^4.4.4",
+    "tslib": "^2.2.0"
   },
   "dependencies": {
     "ammo-debug-drawer": "^1.0.1",
     "ammo.js": "glavin001/ammo.js#use-ammo",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "stats.js": "^0.17.0",
     "three-stdlib": "^2.4.0"
   },

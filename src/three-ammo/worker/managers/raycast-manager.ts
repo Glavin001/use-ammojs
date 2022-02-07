@@ -6,7 +6,7 @@ import {
   RaycastOptions,
 } from "../../lib/types";
 import { world } from "./world-manager";
-import { ptrToRigidBody } from "./rigid-body-manager";
+import { ptrToRigidBody } from "./shared";
 import { ptrToSoftBody } from "./soft-body-manager";
 
 function raycastRequest({

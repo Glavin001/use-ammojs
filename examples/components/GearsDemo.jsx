@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom'
 import { Physics, BodyType, PhysicsStats, ShapeType, SoftBodyType, useRigidBody, useSoftBody, ConstraintType, useSingleBodyConstraint } from 'use-ammojs'
 import { Box, Sphere, OrbitControls, Stage, Stats } from '@react-three/drei'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
-
 import { ErrorBoundary } from 'react-error-boundary'
+
+import { Gear } from './Gear';
 
 function ErrorFallback({error, resetErrorBoundary}) {
   console.log('error', error);
@@ -18,8 +19,6 @@ function ErrorFallback({error, resetErrorBoundary}) {
   //   </div>
   // )
 }
-
-import { Gear } from './Gear';
 
 export function Demo() {
   const { camera } = useThree()
@@ -46,25 +45,25 @@ export function Demo() {
           velocity={0}
           numTeeth={20}
         /> */}
-        <HingedGear
+        {/* <HingedGear
           position={[gearStartX - 1.2, 2, 0]}
           velocity={0}
           circularPitch={0.4}
           numTeeth={5}
           centerholeradius={0.05}
-        />
+        /> */}
         <HingedGear position={[gearStartX, 2, 0]} velocity={3} />
         <HingedGear position={[gearStartX + gearSep, 2, 0]} velocity={0} />
         <HingedGear position={[gearStartX + 2 * gearSep, 2, 0]} velocity={0} />
 
         <HingedBox position={[0, 1, 2]} />
 
-        {/* {Array(10)
+        {Array(30)
           .fill(null)
           .map((_, index) => {
-            return <PhysicalBox key={index} position={[Math.random() / 2, 15 + index * 2, 0]} />
+            return <PhysicalBox key={index} args={[0.5, 0.5, 0.5]} position={[Math.random() / 2 + 4, 1 + index * 2, 0]} />
           })}
-        {Array(10)
+        {/* {Array(10)
           .fill(null)
           .map((_, index) => {
             return <PhysicalSphere key={index} position={[Math.random() / 2, 15 + index * 2, 1]} args={[0.1, 16, 16]} />
@@ -76,19 +75,20 @@ export function Demo() {
   )
 }
 
-function PhysicalBox({ position } = {}) {
+const PhysicalBox = forwardRef(({ position, args = [1, 1, 1] } = {}, fwdRef) => {
   const [ref] = useRigidBody(() => ({
     bodyType: BodyType.DYNAMIC,
     shapeType: ShapeType.BOX,
     position
-  }))
+  }), fwdRef)
 
   return (
-    <Box ref={ref} castShadow>
+    <Box ref={ref} castShadow args={args}>
       <meshPhysicalMaterial attach="material" color="red" />
     </Box>
   )
-}
+});
+PhysicalBox.displayName = 'PhysicalBox';
 
 function HingedGear({
   position,
@@ -148,7 +148,7 @@ function HingedBox({ position } = {}) {
       rotation: { x: 0, y: 0, z: 0, w: 1 },
     },
   });
-  
+
   useFrame(({ clock }) => {
     // console.log('hingeApi', hingeApi);
     const t = clock.getElapsedTime();
@@ -156,13 +156,8 @@ function HingedBox({ position } = {}) {
     hingeApi.enableAngularMotor(true, v, 1);
   });
 
-  return (
-    <Box ref={ref} castShadow>
-      <meshPhysicalMaterial attach="material" color="red" />
-    </Box>
-  )
+  return <PhysicalBox ref={ref} />;
 }
-
 
 function PhysicalBall({ position, pressure } = {}) {
   const [ref] = useSoftBody(() => ({

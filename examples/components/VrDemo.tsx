@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect, useMemo, useRef, Fragment, forwardRef, createRef, Suspense } from 'react'
 // import { VRCanvas, Hands, DefaultXRControllers, useXR, Interactive } from '@react-three/xr'
 import { useThree, useFrame, Canvas } from '@react-three/fiber'
@@ -5,10 +6,11 @@ import { Box, OrbitControls, Plane, Sphere, Sky, useMatcapTexture, Text, Stats, 
 // import niceColors from 'nice-color-palettes'
 // import { Color } from 'three'
 import * as THREE from 'three'
-import dynamic from "next/dynamic";
 
 // import { usePlane, useBox, useCylinder, Physics, useSphere, Debug, useCompoundBody, useConeTwistConstraint } from '@react-three/cannon'
 import { BodyType, ConstraintType, Physics, PhysicsStats, ShapeType, useRigidBody, useTwoBodyConstraint } from 'use-ammojs'
+
+import { Hands, Interactive, } from '@react-three/xr'
 
 // import { joints } from './joints'
 // import { fakeHand } from './hand-faker'
@@ -18,8 +20,22 @@ import { BodyType, ConstraintType, Physics, PhysicsStats, ShapeType, useRigidBod
 // import { ChainScene } from './Chain'
 
 const SHOULD_MOVE = true;
-const FAKE_HANDS = true;
-const MOVE_SPEED = 0.5;
+const FAKE_HANDS = false;
+const HANDS_USE_CONSTRAINTS = true;
+const MOVE_SPEED = 2; //0.5;
+const SHOW_FAST_HANDS = true;
+const SHOW_PHYSICS_GHOST_HANDS = false;
+const SHOW_PHYSICS_PHYSICAL_HANDS = true;
+
+function movePos(origPos: THREE.Vector3, t: number) {
+    if (!SHOULD_MOVE) return origPos;
+    return {
+        x: origPos.x + Math.cos(MOVE_SPEED*t*1.7) * 0.5,
+        y: origPos.y - 0.4, //Math.sin(t) * 1,
+        z: origPos.z + Math.sin(MOVE_SPEED*t*1.3) * 0.5
+        // z: origPos.z,
+    } as any;
+}
 
 enum COLLISION_GROUPS {
     GROUND = 2,
@@ -33,19 +49,6 @@ enum COLLISION_GROUPS {
 //         ssr: false,
 //     }
 // );
-
-const Hands = dynamic<any>(
-    () => import("@react-three/xr").then((mod) => mod.Hands),
-    {
-        ssr: false,
-    }
-);
-const Interactive = dynamic<any>(
-    () => import("@react-three/xr").then((mod) => mod.Interactive),
-    {
-        ssr: false,
-    }
-);
 
 // const DefaultXRControllers = dynamic<any>(
 //     () =>
@@ -87,19 +90,18 @@ const useFastFrame = useFrame;
 // const useFastFrame = SHOULD_MOVE ? useFrame : () => {};
 
 // function useFastFrame(callback: Function) {
-//     /*
+//     const { clock } = useThree();
 //     const callbackRef = useRef(callback)
 //     callbackRef.current = callback
 //     useEffect(() => {
 //       const i = setInterval(() => {
-//         callbackRef.current()
+//         callbackRef.current({ clock });
 //       }, 10)
 //       return () => {
 //         clearInterval(i)
 //       }
-//     }, [])
-//     */
-//     useFrame(callback as any)
+//     }, []);
+//     // useFrame(callback as any)
 //     // useFrame(() => {
 //     // });
 // }
@@ -158,7 +160,7 @@ function PhysicalSphere(props: any = {}) {
             radius: args[0],
         },
         mass: 0.01,
-    }), undefined, undefined, [JSON.stringify(props)])
+    }), undefined, [JSON.stringify(props)])
 
     return (
         <Sphere ref={ref} castShadow {...props} args={args}>
@@ -233,7 +235,7 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
     // console.log('JointCollider', index, joint.jointRadius, joint.position, joint.quaternion);
 
     // Phantom
-    const [bodyRef, api] = useRigidBody(
+    const [bodyRef, ghostApi] = useRigidBody(
         () => ({
             // args: size,
             // type: 'Static',
@@ -271,7 +273,7 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
     // }))
 
     // Physical
-    const [physicalRef] = useRigidBody(
+    const [physicalRef, physicalApi] = useRigidBody(
         () => ({
             // args: size,
             // type: 'Static',
@@ -285,7 +287,7 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
             linearDamping: 0,
             angularDamping: 0,
             gravity: { x: 0, y: 0, z: 0 } as any,
-            mass: 100, //100000,
+            mass: 0.1, //100, //100000,
             position: [0, 1, 0],
             friction: 100,
             // material: {
@@ -300,36 +302,40 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
         // ref as any,
     )
 
-    useTwoBodyConstraint({
-        bodyARef: bodyRef as any,
-        bodyBRef: physicalRef as any,
-        // type: ConstraintType.HINGE,
+    if (HANDS_USE_CONSTRAINTS) {
+        useTwoBodyConstraint({
+            bodyARef: bodyRef as any,
+            bodyBRef: physicalRef as any,
+            // type: ConstraintType.HINGE,
 
-        type: ConstraintType.POINT_TO_POINT,
-        pivot: { x: 0, y: 0, z: 0 } as any,
-        // axis: { x: 0, y: 1, z: 0 } as any,
-        targetPivot: { x: 0, y: 0, z: 0 } as any,
-        // targetAxis: { x: 0, y: 1, z: 0 } as any,
+            type: ConstraintType.POINT_TO_POINT,
+            pivot: { x: 0, y: 0, z: 0 } as any,
+            // axis: { x: 0, y: 1, z: 0 } as any,
+            targetPivot: { x: 0, y: 0, z: 0 } as any,
+            // targetAxis: { x: 0, y: 1, z: 0 } as any,
 
-        // type: ConstraintType.GENERIC_6_DOF_SPRING,
-        // useLinearReferenceFrameA: true,
+            // type: ConstraintType.GENERIC_6_DOF_SPRING,
+            // useLinearReferenceFrameA: true,
 
-        // frameInA: {
-        //     position: { x: 0, y: 0, z: 0 } as any,
-        //     rotation: { _x: 0, _y: 0, _z: 0, _w: 1 } as any,
-        // },
-        // frameInB: {
-        //     position: { x: 0, y: 0, z: 0 } as any,
-        //     rotation: { _x: 0, _y: 0, _z: 0, _w: 1 } as any,
-        // },
-        // springEnabled: [true, true, true, true, true, true],
-        // stiffness: [40, 40, 40, 40, 40, 40],
-        // damping: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
-        // linearUpperLimit: [5, 0, 0],
-        // linearLowerLimit: [-5, 0, 0],
-        // angularUpperLimit: [0, 0, 0],
-        // angularLowerLimit: [0, 0, 0],
-    });
+            // frameInA: {
+            //     position: { x: 0, y: 0, z: 0 } as any,
+            //     rotation: { _x: 0, _y: 0, _z: 0, _w: 1 } as any,
+            // },
+            // frameInB: {
+            //     position: { x: 0, y: 0, z: 0 } as any,
+            //     rotation: { _x: 0, _y: 0, _z: 0, _w: 1 } as any,
+            // },
+            // springEnabled: [true, true, true, true, true, true],
+            // stiffness: [40, 40, 40, 40, 40, 40],
+            // damping: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+            // linearUpperLimit: [5, 0, 0],
+            // linearLowerLimit: [-5, 0, 0],
+            // angularUpperLimit: [0, 0, 0],
+            // angularLowerLimit: [0, 0, 0],
+        });
+    }
+
+    const api = HANDS_USE_CONSTRAINTS ? ghostApi : physicalApi
 
     useFastFrame(({ clock }) => {
         if (joint === undefined) return
@@ -340,15 +346,15 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
         // api.setPosition(joint.position)
 
         // SET_POSITION
-        if (SHOULD_MOVE) {
-            api.setPosition({
-                x: joint.position.x + Math.cos(MOVE_SPEED*t*1.5) * 0.3,
-                y: joint.position.y - 0.4, //Math.sin(t) * 1,
-                z: joint.position.z + Math.sin(MOVE_SPEED*t) * 0.3
-            } as any)
-        } else {
-            api.setPosition(joint.position)
-        }
+        // if (SHOULD_MOVE) {
+        //     api.setPosition({
+        //         x: joint.position.x + Math.cos(MOVE_SPEED*t*1.5) * 0.5,
+        //         y: joint.position.y - 0.4, //Math.sin(t) * 1,
+        //         z: joint.position.z + Math.sin(MOVE_SPEED*t) * 0.5
+        //     } as any)
+        // } else {
+        api.setPosition(movePos(joint.position, t))
+        // }
 
         // boxApi.position.set(joint.position.x, joint.position.y, joint.position.z)
         // boxApi.rotation.copy(joint.quaternion)
@@ -357,18 +363,22 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
     return (
         <>
             {/* Phantom */}
+            {HANDS_USE_CONSTRAINTS && (
             <Sphere
                 ref={bodyRef}
                 // args={[10, 16, 16]}
                 args={[size, 16, 16]}
+                visible={SHOW_PHYSICS_GHOST_HANDS}
             >
                 <meshStandardMaterial wireframe attach="material" />
             </Sphere>
+            )}
             {/* Physical */}
             <Sphere
                 ref={physicalRef}
                 // args={[10, 16, 16]}
                 args={[size, 16, 16]}
+                visible={SHOW_PHYSICS_PHYSICAL_HANDS}
             >
                 <meshNormalMaterial attach="material" />
             </Sphere>
@@ -379,7 +389,7 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
         </>
     )
 })
-JointCollider.displayName = 'JoinCollider';
+JointCollider.displayName = 'JointCollider';
 
 function HandsReady(props: any) {
     // return props.children
@@ -433,8 +443,10 @@ const Bone = ({ start, end, hand }: any) => {
     // const size = joint.jointRadius ?? 0.0001
     // console.log('Bone', hand, start, end);
 
+    const fastRef = useRef<THREE.Object3D>();
+
     // Phantom
-    const [ref, api] = useRigidBody(() => ({
+    const [ref, ghostApi] = useRigidBody(() => ({
         bodyType: BodyType.DYNAMIC,
         shapeType: ShapeType.CYLINDER,
         mass: 10000,//100000,
@@ -486,6 +498,7 @@ const Bone = ({ start, end, hand }: any) => {
         // }
     }))
 
+    if (HANDS_USE_CONSTRAINTS) {
     useTwoBodyConstraint({
         bodyARef: ref as any,
         bodyBRef: refPhysical as any,
@@ -513,6 +526,9 @@ const Bone = ({ start, end, hand }: any) => {
         // stiffness: [40, 40, 40, 40, 40, 40],
         // damping: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
     });
+    }
+
+    const api = HANDS_USE_CONSTRAINTS ? ghostApi : apiPhysical
 
     useFastFrame(({ clock }) => {
         // if (!(startRef && startRef.current && endRef && endRef.current)) {
@@ -534,15 +550,14 @@ const Bone = ({ start, end, hand }: any) => {
         // api.setPosition(midPos)
 
         // SET_POSITION
-        if (SHOULD_MOVE) {
-            api.setPosition({
-                x: midPos.x + Math.cos(MOVE_SPEED*t*1.5) * 0.3,
-                y: midPos.y - 0.4, //Math.sin(t) * 1,
-                z: midPos.z + Math.sin(MOVE_SPEED*t) * 0.3
-            } as any)
-        } else {
-            api.setPosition(midPos)
-        }
+        // const newPos = SHOULD_MOVE ? {
+        //     x: midPos.x + Math.cos(MOVE_SPEED*t*1.5) * 0.5,
+        //     y: midPos.y - 0.4, //Math.sin(t) * 1,
+        //     z: midPos.z + Math.sin(MOVE_SPEED*t) * 0.5
+        // } as any : midPos;
+        const newPos = movePos(midPos, t);
+        api.setPosition(newPos)
+        fastRef.current?.position.copy(newPos)
 
         // Vector beween 2 points
         const diffVector = new THREE.Vector3()
@@ -577,6 +592,7 @@ const Bone = ({ start, end, hand }: any) => {
         // UPDATE_ROTATION
         api.setRotation(cylinderQuaternion) // FIXME
         apiPhysical.setRotation(cylinderQuaternion)
+        fastRef.current?.quaternion.copy(cylinderQuaternion)
 
         // api.rotation.set(X, Y, Z)
         // api.rotation.set(Math.sin(t), 0, 0) // Lean forwrd/back
@@ -617,6 +633,7 @@ const Bone = ({ start, end, hand }: any) => {
                 ref={refPhysical}
                 position={pos as any}
                 rotation={defaultRot as any}
+                visible={SHOW_PHYSICS_PHYSICAL_HANDS}
             >
                 <cylinderBufferGeometry args={args as any} />
                 <meshNormalMaterial />
@@ -632,13 +649,26 @@ const Bone = ({ start, end, hand }: any) => {
                 <meshNormalMaterial />
             </Box> */}
             {/* Phantom */}
+            {HANDS_USE_CONSTRAINTS && (
             <mesh
                 ref={ref}
                 position={pos as any}
                 rotation={defaultRot as any}
+                visible={SHOW_PHYSICS_GHOST_HANDS}
             >
                 <cylinderBufferGeometry args={args as any} />
                 <meshStandardMaterial wireframe />
+            </mesh>
+            )}
+            {/* Fast non-physics phantom */}
+            <mesh
+                ref={fastRef}
+                position={pos as any}
+                rotation={defaultRot as any}
+                visible={SHOW_FAST_HANDS}
+            >
+                <cylinderBufferGeometry args={args as any} />
+                <meshStandardMaterial wireframe color={"purple"} />
             </mesh>
         </>
     )
@@ -875,7 +905,7 @@ function Floor() {
     }))
 
     return (
-        <Box ref={groundRef} args={[200, 0.1, 200]} receiveShadow>
+        <Box ref={groundRef} args={[10, 0.1, 10]} receiveShadow>
             <meshPhysicalMaterial attach="material" color="grey" />
         </Box>
     )
@@ -917,7 +947,7 @@ export function Scene({ isVr }: { isVr: boolean }) {
     return (
         <group>
             {/* <Sky /> */}
-            <Environment background preset="apartment" />
+            {/* <Environment background preset="apartment" /> */}
             <Floor />
             {/* <Button position={[0.5, 0.5, -0.2]} /> */}
             {/* <Robot
@@ -941,7 +971,7 @@ export function Scene({ isVr }: { isVr: boolean }) {
                 <Controllers />
             )}
 
-            {[...Array(10)].map((_, i) => {
+            {[...Array(30)].map((_, i) => {
                 const size = 0.1 + (Math.random() - 0.5) * 0.05;
                 return (
                 <RespawningCube
@@ -957,7 +987,7 @@ export function Scene({ isVr }: { isVr: boolean }) {
                 );
             })}
 
-           {[...Array(1)].map((_, i) => (
+           {/* {[...Array(1)].map((_, i) => (
                 <PhysicalSphere
                     key={i}
                     position={[0, 0.6 + 0.2 * i, -0.5]}
@@ -967,7 +997,7 @@ export function Scene({ isVr }: { isVr: boolean }) {
                     // args={[0.05, 0.05, 0.05]}
                     args={[0.03, 16, 16]}
                 />
-            ))}
+            ))} */}
 
             {/* {[...Array(15)].map((_, i) => (
         <Cube

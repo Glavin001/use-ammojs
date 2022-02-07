@@ -1,6 +1,6 @@
 import { Constraint } from "../wrappers/constraint";
 import { ConstraintConfig, MessageType, UUID } from "../../lib/types";
-import { bodies } from "./rigid-body-manager";
+import { bodies } from "./shared";
 import { world } from "./world-manager";
 
 const constraints: Record<UUID, Constraint> = {};

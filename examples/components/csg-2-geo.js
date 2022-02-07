@@ -1,4 +1,4 @@
-import { BufferGeometry, BufferAttribute, Vector3, Matrix4 } from 'three/build/three.module.js'
+import { BufferGeometry, BufferAttribute, Vector3, Matrix4 } from 'three'
 
 export function CSG2Geom(csg) {
   const vertices = []

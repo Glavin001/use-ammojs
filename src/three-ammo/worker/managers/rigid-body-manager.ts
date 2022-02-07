@@ -21,17 +21,9 @@ import {
   world,
 } from "./world-manager";
 import { createCollisionShapes } from "../../../three-to-ammo";
-
-export const bodies: Record<UUID, RigidBody> = {};
-export const matrices: Record<UUID, Matrix4> = {};
-export const indexes: Record<UUID, number> = {};
-export const ptrToIndex: Record<number, number> = {};
-
-export const ptrToRigidBody: Record<number, UUID> = {};
+import { indexes, uuids, matrices, bodies, ptrToIndex, ptrToRigidBody } from "./shared";
 
 let freeIndex = 0;
-
-export const uuids: UUID[] = [];
 
 function addBody({
   uuid,

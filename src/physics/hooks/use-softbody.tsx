@@ -5,6 +5,7 @@ import { SoftBodyAnchorRef, SoftBodyConfig } from "../../three-ammo/lib/types";
 import { createSoftbodyApi, SoftbodyApi } from "../api/softbody-api";
 import { isSoftBodyRigidBodyAnchorRef } from "../../three-ammo/worker/utils";
 import { useForwardedRef } from "../../utils/useForwardedRef";
+import { isRef } from "../../utils/isRef";
 
 type UseSoftBodyOptions = Omit<SoftBodyConfig, "anchors"> & {
   anchors?: SoftBodyAnchorRef[];
@@ -12,10 +13,10 @@ type UseSoftBodyOptions = Omit<SoftBodyConfig, "anchors"> & {
 
 export function useSoftBody(
   options: UseSoftBodyOptions | (() => UseSoftBodyOptions),
-  mesh?: Mesh,
-  fwdRef?: Ref<Mesh>,
+  fwdRefOrMesh?: Ref<Mesh> | Mesh,
   deps: DependencyList = []
 ): [MutableRefObject<Mesh | null>, SoftbodyApi] {
+  const fwdRef = isRef(fwdRefOrMesh) ? fwdRefOrMesh : undefined;
   const ref = useForwardedRef<Mesh>(fwdRef);
 
   const physicsContext = useAmmoPhysicsContext();
@@ -24,17 +25,19 @@ export function useSoftBody(
   const [bodyUUID] = useState(() => MathUtils.generateUUID());
 
   useEffect(() => {
+    // For backwards compatibility
+    const mesh = isRef(fwdRefOrMesh) ? undefined : fwdRefOrMesh;
     const meshToUse = mesh ? mesh : ref.current!;
+
+    if (!meshToUse) {
+      throw new Error("useSoftBody ref does not contain a mesh");
+    }
 
     if (typeof options === "function") {
       options = options();
     }
 
     const { anchors, ...rest } = options;
-
-    if (!meshToUse) {
-      throw new Error("useSoftBody ref does not contain a mesh");
-    }
 
     addSoftBody(bodyUUID, meshToUse, {
       anchors:

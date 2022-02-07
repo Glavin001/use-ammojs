@@ -1,6 +1,7 @@
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import {
   SerializedQuaternion,
+  SerializedVector3,
   SoftBodyAnchor,
   SoftBodyAnchorRef,
   SoftBodyRigidBodyAnchor,
@@ -8,7 +9,7 @@ import {
   Transform,
 } from "../lib/types";
 
-export function almostEqualsVector3(epsilon: number, u: Vector3, v: Vector3) {
+export function almostEqualsVector3(epsilon: number, u: SerializedVector3, v: SerializedVector3) {
   return (
     Math.abs(u.x - v.x) < epsilon &&
     Math.abs(u.y - v.y) < epsilon &&
@@ -45,7 +46,7 @@ export function almostEqualsQuaternion(
   );
 }
 
-export function toBtVector3(btVec: Ammo.btVector3, vec: Vector3) {
+export function toBtVector3(btVec: Ammo.btVector3, vec: SerializedVector3) {
   btVec.setValue(vec.x, vec.y, vec.z);
 }
 
@@ -121,4 +122,25 @@ export function isEuler(v): v is Euler {
 
 export function isQuaternion(q): q is Quaternion {
   return q && q.isQuaternion;
+}
+
+export function isSerializedQuaternion(q): q is SerializedQuaternion {
+  return (
+    q &&
+    typeof q == 'object' &&
+    q.hasOwnProperty("_x") &&
+    q.hasOwnProperty("_y") &&
+    q.hasOwnProperty("_z") &&
+    q.hasOwnProperty("_w")
+  );
+}
+
+export function isSerializedVector3(v): v is SerializedVector3 {
+  return (
+    v &&
+    typeof v == 'object' &&
+    v.hasOwnProperty("x") &&
+    v.hasOwnProperty("y") &&
+    v.hasOwnProperty("z")
+  );
 }

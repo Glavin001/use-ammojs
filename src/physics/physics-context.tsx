@@ -42,6 +42,7 @@ export interface PhysicsState {
 export interface PhysicsPerformanceInfo {
   lastTickMs: number;
   substepCounter: number;
+  fps: number;
 }
 
 export interface ShapeDescriptor {

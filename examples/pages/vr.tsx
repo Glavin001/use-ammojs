@@ -1,11 +1,11 @@
 import React, { useEffect, Suspense, useCallback } from 'react'
 import { OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber';
-import { VRCanvas } from '@react-three/xr';
+import { VRCanvas, ARCanvas } from '@react-three/xr';
 import { Physics, PhysicsStats } from 'use-ammojs'
+import Head from 'next/head';
 
 import { Scene } from '../components/VrDemo'
-import Head from 'next/head';
 
 const isVr = true; // For development purposes
 const MainCanvas = isVr ? VRCanvas : Canvas;
@@ -18,7 +18,9 @@ function App() {
         <MainCanvas {...{ shadowMap: true } as any}>
             <Suspense fallback={null}>
                 <Physics
-                    // drawDebug
+                    // fixedTimeStep={1 / 120}
+                    // fixedTimeStep={1 / 200}
+                    drawDebug
                     // drawDebugMode={{
                     //     DrawWireframe: true,
                     // }}

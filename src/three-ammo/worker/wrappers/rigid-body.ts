@@ -103,7 +103,7 @@ export class RigidBody {
     this.angularSleepingThreshold = bodyConfig.angularSleepingThreshold ?? 2.5;
     this.angularFactor = new Vector3(1, 1, 1);
     if (bodyConfig.angularFactor) {
-      this.angularFactor.copy(bodyConfig.angularFactor);
+      this.angularFactor.set(bodyConfig.angularFactor.x, bodyConfig.angularFactor.y, bodyConfig.angularFactor.z);
     }
     this.activationState =
       bodyConfig.activationState ?? BodyActivationState.ACTIVE_TAG;
@@ -388,7 +388,7 @@ export class RigidBody {
       bodyConfig.angularFactor &&
       !almostEqualsVector3(0.001, bodyConfig.angularFactor, this.angularFactor)
     ) {
-      this.angularFactor.copy(bodyConfig.angularFactor);
+      this.angularFactor.set(bodyConfig.angularFactor.x, bodyConfig.angularFactor.y, bodyConfig.angularFactor.z);
       const angularFactor = new Ammo.btVector3(
         this.angularFactor.x,
         this.angularFactor.y,

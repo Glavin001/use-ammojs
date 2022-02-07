@@ -104,7 +104,7 @@ function PhysicalSphere(props: any = {}) {
         bodyType: BodyType.DYNAMIC,
         shapeType: ShapeType.SPHERE,
         // position
-    }), undefined, undefined, [JSON.stringify(props)])
+    }), undefined, [JSON.stringify(props)])
 
     return (
         <Sphere ref={ref} castShadow {...props}>
@@ -121,7 +121,7 @@ const PhysicalCylinder: typeof Cylinder = forwardRef<any, any>((props = {}, fwdR
         // position,
         // friction: 0.9,
         mass: 1,
-    }), undefined, fwdRef as any, [JSON.stringify(props)])
+    }), fwdRef as any, [JSON.stringify(props)])
 
     const { friction } = useControls('Wheels', {
       friction: 0.5,
@@ -148,7 +148,7 @@ const PhysicalBox = forwardRef<any, any>((props = {}, fwdRef) => {
         mass: 10,
         // position,
         // enableCCD: true,
-    }), undefined, fwdRef as any, [JSON.stringify({ args, position })])
+    }), fwdRef as any, [JSON.stringify({ args, position })])
 
     return (
         <Box ref={finalRef} castShadow {...props}>

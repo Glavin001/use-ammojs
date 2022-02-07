@@ -9,17 +9,17 @@ import {
 } from "../../three-ammo/lib/types";
 import { ConstraintApi, createConstraintApi } from "../api/constraint-api";
 
-type SingleBodyConstraintRefs = {
+export type SingleBodyConstraintRefs = {
   bodyARef: MutableRefObject<Object3D | undefined>;
   bodyBRef?: undefined;
 };
 
-type TwoBodyConstraintRefs = {
+export type TwoBodyConstraintRefs = {
   bodyARef: MutableRefObject<Object3D | undefined>;
   bodyBRef: MutableRefObject<Object3D | undefined>;
 };
 
-type UseConstraintProps = CommonConstraintConfig &
+export type UseConstraintProps = CommonConstraintConfig &
   (
     | (SingleBodyConstraintRefs & SingleBodyConstraintConfig)
     | (TwoBodyConstraintRefs & TwoBodyConstraintConfig)
@@ -43,11 +43,12 @@ export function useTwoBodyConstraint(
   return useConstraint(props, deps);
 }
 
-type UseConstraintReturn = [
+export type UseConstraintReturn = [
   MutableRefObject<Object3D | undefined> | undefined,
   MutableRefObject<Object3D | undefined> | undefined,
   ConstraintApi,
 ];
+export { ConstraintApi };
 
 export function useConstraint(props: UseConstraintProps, deps: DependencyList = []): UseConstraintReturn {
   const physicsContext = useAmmoPhysicsContext();
