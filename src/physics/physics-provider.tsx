@@ -28,6 +28,7 @@ import { BUFFER_CONFIG } from "../three-ammo/lib/constants";
 import { mergeVertices } from "three-stdlib";
 import { PhysicsUpdate } from "./physics-update";
 import { PhysicsDebug } from "./physics-debug";
+import { world } from "../three-ammo/worker/managers/world-manager";
 
 interface AmmoPhysicsProps {
   // Draw a collision debug mesh into the scene
@@ -57,6 +58,8 @@ interface AmmoPhysicsProps {
 
 const DEFAULT_DEBUG_MODE = { DrawWireframe: true };
 
+export { AmmoDebugOptions };
+
 export function Physics({
   drawDebug,
   drawDebugMode = DEFAULT_DEBUG_MODE,
@@ -78,6 +81,7 @@ export function Physics({
   const physicsPerformanceInfoRef = useRef<PhysicsPerformanceInfo>({
     substepCounter: 0,
     lastTickMs: 0,
+    fps: 0,
   });
 
   useEffect(() => {
@@ -435,10 +439,23 @@ export function Physics({
   }, [drawDebug, physicsState]);
 
   useEffect(() => {
+    if (physicsState) {
+      workerHelpers.updateDebugMode(ammoDebugOptionsToNumber(drawDebugMode));
+    }
+  }, [drawDebugMode, physicsState]);
+
+  useEffect(() => {
     if (physicsState?.workerHelpers) {
       workerHelpers.setSimulationSpeed(simulationSpeed);
     }
   }, [physicsState?.workerHelpers, simulationSpeed]);
+
+  useEffect(() => {
+    if (physicsState?.workerHelpers) {
+      const newGravity = gravity && new Vector3(gravity[0], gravity[1], gravity[2]);
+      workerHelpers.setGravity(newGravity);
+    }
+  }, [physicsState?.workerHelpers, gravity]);
 
   if (!physicsState) {
     return null;

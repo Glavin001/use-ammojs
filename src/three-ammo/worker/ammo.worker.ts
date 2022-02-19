@@ -20,13 +20,16 @@ import { raycastEventReceivers } from "./managers/raycast-manager";
 import { DEFAULT_TIMESTEP } from "../lib/constants";
 
 let lastTick;
+let prevFpsTime;
 let substepCounter = 0;
 let tickInterval;
+let frames = 0;
 
 let simulationSpeed = 1 / 1000;
+const fpsRefreshInterval = 500;
 
 function tick() {
-  if (isBufferConsumed()) {
+  if (true) {
     const now = performance.now();
     const dt = now - lastTick;
     try {
@@ -36,20 +39,36 @@ function tick() {
       lastTick = now;
       substepCounter = (substepCounter + numSubsteps) % 2147483647; // limit to 32bit for transfer
 
-      if (numSubsteps > 0) {
+      if (numSubsteps === 0) {
+        return;
+      }
+
+      frames++;
+
+      if (isBufferConsumed()) {
         sharedBuffers.rigidBodies.headerFloatArray[1] = stepDuration;
         sharedBuffers.rigidBodies.headerIntArray[2] = substepCounter;
 
+        const shouldUpdateFps = now >= (prevFpsTime + fpsRefreshInterval);
+        if (shouldUpdateFps) {
+          sharedBuffers.rigidBodies.headerFloatArray[3] = ( frames * 1000 ) / ( now - prevFpsTime );
+
+          prevFpsTime = now;
+          frames = 0;
+        }
+
         copyToRigidBodyBuffer();
         copyToSoftBodyBuffers();
+
+        releaseBuffer();
       }
     } catch (err) {
       console.error("The ammo worker has crashed:", err);
       clearInterval(tickInterval);
       self.onmessage = null;
-    }
 
-    releaseBuffer();
+      releaseBuffer();
+    }
   }
 }
 
@@ -88,9 +107,14 @@ onmessage = async (event) => {
       await eventReceivers[MessageType.INIT](event.data);
 
       lastTick = performance.now();
+      prevFpsTime = lastTick;
+      const timestep = event.data?.worldConfig?.fixedTimeStep ?? DEFAULT_TIMESTEP;
+      if (tickInterval) {
+        clearInterval(tickInterval);
+      }
       tickInterval = self.setInterval(
         tick,
-        event.data.fixedTimeStep ?? DEFAULT_TIMESTEP
+        timestep,
       );
     } else {
       console.error("Error: World Not Initialized", event.data);

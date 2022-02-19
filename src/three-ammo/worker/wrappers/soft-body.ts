@@ -7,7 +7,7 @@ import {
 } from "../../lib/types";
 import { World } from "./world";
 import { isSoftBodyRigidBodyAnchor, toBtVector3, toVector3 } from "../utils";
-import { bodies } from "../managers/rigid-body-manager";
+import { bodies } from "../managers/shared";
 import { ZERO } from "../../lib/constants";
 
 export class SoftBody {

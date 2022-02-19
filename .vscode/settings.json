@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.idl": "cpp"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

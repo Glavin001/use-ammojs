@@ -7,7 +7,7 @@ export const DEFAULT_TIMESTEP = 1 / 60;
 
 export const BUFFER_CONFIG = {
   // Header length in number of int32/float32
-  HEADER_LENGTH: 3,
+  HEADER_LENGTH: 4,
   MAX_BODIES: 10000,
   MATRIX_OFFSET: 0,
   LINEAR_VELOCITY_OFFSET: 16,

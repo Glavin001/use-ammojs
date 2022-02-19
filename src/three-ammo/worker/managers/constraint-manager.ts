@@ -1,6 +1,6 @@
 import { Constraint } from "../wrappers/constraint";
 import { ConstraintConfig, MessageType, UUID } from "../../lib/types";
-import { bodies } from "./rigid-body-manager";
+import { bodies } from "./shared";
 import { world } from "./world-manager";
 
 const constraints: Record<UUID, Constraint> = {};
@@ -20,8 +20,8 @@ function addConstraint({ constraintId, bodyAUuid, bodyBUuid, options }) {
 
 function updateConstraint({
   constraintId,
-  ...config
-}: ConstraintConfig & { constraintId: UUID }) {
+  options: config,
+}: { constraintId: UUID, options: ConstraintConfig }) {
   if (constraints[constraintId]) {
     constraints[constraintId].applyDynamicConfig(config);
   }

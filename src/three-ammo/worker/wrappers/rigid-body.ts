@@ -37,6 +37,7 @@ export class RigidBody {
   loadedEvent: string;
   mass: number;
   gravity: Ammo.btVector3;
+  friction: number;
   linearDamping: number;
   angularDamping: number;
   linearSleepingThreshold: number;
@@ -95,13 +96,14 @@ export class RigidBody {
         bodyConfig.gravity.z
       );
     }
+    this.friction = bodyConfig.friction ?? 0.5;
     this.linearDamping = bodyConfig.linearDamping ?? 0.01;
     this.angularDamping = bodyConfig.angularDamping ?? 0.01;
     this.linearSleepingThreshold = bodyConfig.linearSleepingThreshold ?? 1.6;
     this.angularSleepingThreshold = bodyConfig.angularSleepingThreshold ?? 2.5;
     this.angularFactor = new Vector3(1, 1, 1);
     if (bodyConfig.angularFactor) {
-      this.angularFactor.copy(bodyConfig.angularFactor);
+      this.angularFactor.set(bodyConfig.angularFactor.x, bodyConfig.angularFactor.y, bodyConfig.angularFactor.z);
     }
     this.activationState =
       bodyConfig.activationState ?? BodyActivationState.ACTIVE_TAG;
@@ -178,6 +180,8 @@ export class RigidBody {
     );
 
     this.physicsBody.setDamping(this.linearDamping, this.angularDamping);
+
+    this.physicsBody.setFriction(this.friction);
 
     const angularFactor = new Ammo.btVector3(
       this.angularFactor.x,
@@ -315,6 +319,15 @@ export class RigidBody {
     }
 
     if (
+      (bodyConfig.friction &&
+        bodyConfig.friction != this.friction)
+    ) {
+      if (bodyConfig.friction)
+        this.friction = bodyConfig.friction;
+      this.physicsBody.setFriction(this.friction);
+    }
+
+    if (
       (bodyConfig.linearDamping &&
         bodyConfig.linearDamping != this.linearDamping) ||
       (bodyConfig.angularDamping &&
@@ -375,7 +388,7 @@ export class RigidBody {
       bodyConfig.angularFactor &&
       !almostEqualsVector3(0.001, bodyConfig.angularFactor, this.angularFactor)
     ) {
-      this.angularFactor.copy(bodyConfig.angularFactor);
+      this.angularFactor.set(bodyConfig.angularFactor.x, bodyConfig.angularFactor.y, bodyConfig.angularFactor.z);
       const angularFactor = new Ammo.btVector3(
         this.angularFactor.x,
         this.angularFactor.y,

@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject, useEffect, useState, DependencyList } from "react";
 import { useAmmoPhysicsContext } from "../physics-context";
 import { MathUtils, Object3D } from "three";
 import {
@@ -7,18 +7,19 @@ import {
   TwoBodyConstraintConfig,
   UUID,
 } from "../../three-ammo/lib/types";
+import { ConstraintApi, createConstraintApi } from "../api/constraint-api";
 
-type SingleBodyConstraintRefs = {
+export type SingleBodyConstraintRefs = {
   bodyARef: MutableRefObject<Object3D | undefined>;
   bodyBRef?: undefined;
 };
 
-type TwoBodyConstraintRefs = {
+export type TwoBodyConstraintRefs = {
   bodyARef: MutableRefObject<Object3D | undefined>;
   bodyBRef: MutableRefObject<Object3D | undefined>;
 };
 
-type UseConstraintProps = CommonConstraintConfig &
+export type UseConstraintProps = CommonConstraintConfig &
   (
     | (SingleBodyConstraintRefs & SingleBodyConstraintConfig)
     | (TwoBodyConstraintRefs & TwoBodyConstraintConfig)
@@ -27,27 +28,39 @@ type UseConstraintProps = CommonConstraintConfig &
 export function useSingleBodyConstraint(
   props: CommonConstraintConfig &
     SingleBodyConstraintRefs &
-    SingleBodyConstraintConfig
+    SingleBodyConstraintConfig,
+  deps: DependencyList = []
 ) {
-  return useConstraint(props);
+  return useConstraint(props, deps);
 }
 
 export function useTwoBodyConstraint(
   props: CommonConstraintConfig &
     TwoBodyConstraintRefs &
-    TwoBodyConstraintConfig
+    TwoBodyConstraintConfig,
+  deps: DependencyList = []
 ) {
-  return useConstraint(props);
+  return useConstraint(props, deps);
 }
 
-export function useConstraint(props: UseConstraintProps) {
+export type UseConstraintReturn = [
+  MutableRefObject<Object3D | undefined> | undefined,
+  MutableRefObject<Object3D | undefined> | undefined,
+  ConstraintApi,
+];
+export { ConstraintApi };
+
+export function useConstraint(props: UseConstraintProps, deps: DependencyList = []): UseConstraintReturn {
+  const physicsContext = useAmmoPhysicsContext();
   const {
     addConstraint,
     updateConstraint,
     removeConstraint,
-  } = useAmmoPhysicsContext();
+  } = physicsContext;
 
   const [constraintId] = useState(() => MathUtils.generateUUID());
+
+  const allDeps = [props.bodyARef.current, props.bodyBRef?.current].concat(deps)
 
   useEffect(() => {
     const uuidA: UUID | undefined =
@@ -84,5 +97,11 @@ export function useConstraint(props: UseConstraintProps) {
     }
 
     return () => {};
-  }, [props.bodyARef.current, props.bodyBRef?.current]);
+  }, allDeps);
+
+  return [
+    props.bodyARef,
+    props.bodyBRef,
+    createConstraintApi(physicsContext, constraintId, props.type),
+  ];
 }

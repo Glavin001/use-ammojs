@@ -3,8 +3,8 @@ import { isSharedArrayBufferSupported } from "../utils/utils";
 import { BodyType, BufferState, SharedBuffers } from "../three-ammo/lib/types";
 import { BUFFER_CONFIG } from "../three-ammo/lib/constants";
 import { PhysicsPerformanceInfo, PhysicsState } from "./physics-context";
-import { BufferAttribute, Matrix4, Vector3 } from "three";
-import { MutableRefObject } from "react";
+import { BufferAttribute, InstancedMesh, Matrix4, Vector3 } from "three";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 
 interface PhysicsUpdateProps {
@@ -44,20 +44,21 @@ export function PhysicsUpdate({
 
     const sharedBuffers = sharedBuffersRef.current;
 
-    if (
-      // Check if the worker is finished with the buffer
-      (!isSharedArrayBufferSupported &&
-        sharedBuffers.rigidBodies.objectMatricesFloatArray.byteLength !== 0) ||
-      (isSharedArrayBufferSupported &&
-        Atomics.load(sharedBuffers.rigidBodies.headerIntArray, 0) ===
-          BufferState.READY)
-    ) {
+    // Check if the worker is finished with the buffer
+    const isReady = (!isSharedArrayBufferSupported
+        && sharedBuffers.rigidBodies.objectMatricesFloatArray.byteLength !== 0)
+      || (isSharedArrayBufferSupported
+        && Atomics.load(sharedBuffers.rigidBodies.headerIntArray, 0) === BufferState.READY)
+
+    if (isReady) {
       const lastSubstep = physicsPerformanceInfoRef.current.substepCounter;
 
       physicsPerformanceInfoRef.current.lastTickMs =
         sharedBuffers.rigidBodies.headerFloatArray[1];
       physicsPerformanceInfoRef.current.substepCounter =
         sharedBuffers.rigidBodies.headerIntArray[2];
+      physicsPerformanceInfoRef.current.fps =
+        sharedBuffers.rigidBodies.headerFloatArray[3];
 
       while (threadSafeQueueRef.current.length) {
         const fn = threadSafeQueueRef.current.shift();
@@ -80,7 +81,15 @@ export function PhysicsUpdate({
 
             inverse.copy(object3D.parent!.matrixWorld).invert();
             transform.multiplyMatrices(inverse, matrix);
-            transform.decompose(object3D.position, object3D.quaternion, scale);
+
+            if (object3D instanceof InstancedMesh) {
+              const i = parseInt(uuid.split('/')[1]);
+              object3D.setMatrixAt(i, transform)
+              object3D.instanceMatrix.needsUpdate = true
+            } else {
+              transform.decompose(object3D.position, object3D.quaternion, scale);
+            }
+
           } else {
             // sharedBuffers.rigidBodies.objectMatricesFloatArray.set(
             //   object3D.matrixWorld.elements,

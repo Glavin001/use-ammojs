@@ -1,4 +1,4 @@
-import { Matrix4, Object3D } from "three";
+import { Matrix4, Object3D, InstancedMesh } from "three";
 import { iterateGeometries } from "../../three-to-ammo";
 import AmmoWorker from "web-worker:../worker/ammo.worker";
 import {
@@ -91,9 +91,19 @@ export function WorkerHelpers(ammoWorker: Worker) {
       uuid: UUID,
       mesh: Object3D,
       shapeDescriptor: ShapeDescriptor,
-      options: BodyConfig
+      options: BodyConfig,
     ) {
       let serializedMesh: SerializedMesh | undefined = undefined;
+
+      const getMatrixWorld = (): Matrix4 => {
+        if (mesh instanceof InstancedMesh) {
+          const instanceIndex = parseInt(uuid.split('/')[1]);
+          const mat = new Matrix4();
+          mesh.getMatrixAt(instanceIndex, mat);
+          return mat;
+        }
+        return mesh.matrixWorld;
+      }
 
       if (shapeDescriptor.meshToUse) {
         inverse.copy(mesh.parent!.matrix).invert();
@@ -109,16 +119,18 @@ export function WorkerHelpers(ammoWorker: Worker) {
           indexes.push(index);
         });
 
+        const mat = getMatrixWorld();
+
         serializedMesh = {
           vertices,
           matrices,
           indexes,
-          matrixWorld: mesh.matrixWorld.elements,
+          matrixWorld: mat.elements,
         };
       }
 
       inverse.copy(mesh.parent!.matrixWorld).invert();
-      transform.multiplyMatrices(inverse, mesh.matrixWorld);
+      transform.multiplyMatrices(inverse, getMatrixWorld());
       ammoWorker.postMessage({
         type: MessageType.ADD_RIGIDBODY,
         uuid,
@@ -217,6 +229,13 @@ export function WorkerHelpers(ammoWorker: Worker) {
       });
     },
 
+    updateDebugMode(debugMode) {
+      ammoWorker.postMessage({
+        type: MessageType.UPDATE_DEBUG_MODE,
+        debugMode,
+      });
+    },
+
     resetDynamicBody(uuid) {
       ammoWorker.postMessage({
         type: MessageType.RESET_DYNAMIC_BODY,
@@ -286,6 +305,13 @@ export function WorkerHelpers(ammoWorker: Worker) {
       ammoWorker.postMessage({
         type: MessageType.SET_SIMULATION_SPEED,
         simulationSpeed,
+      });
+    },
+
+    setGravity(gravity: WorldConfig['gravity']) {
+      ammoWorker.postMessage({
+        type: MessageType.SET_GRAVITY,
+        gravity,
       });
     },
   };
