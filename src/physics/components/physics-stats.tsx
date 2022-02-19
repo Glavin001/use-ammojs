@@ -10,7 +10,7 @@ interface PhysicsStatsProps {
   right?: number | string;
 }
 
-const panelIndexOffset = 3;
+const panelIndexOffset = 4;
 const numPanels = 2;
 
 export function PhysicsStats({

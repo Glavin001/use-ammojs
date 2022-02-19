@@ -3,7 +3,7 @@ import { isSharedArrayBufferSupported } from "../utils/utils";
 import { BodyType, BufferState, SharedBuffers } from "../three-ammo/lib/types";
 import { BUFFER_CONFIG } from "../three-ammo/lib/constants";
 import { PhysicsPerformanceInfo, PhysicsState } from "./physics-context";
-import { BufferAttribute, Matrix4, Vector3 } from "three";
+import { BufferAttribute, InstancedMesh, Matrix4, Vector3 } from "three";
 import { MutableRefObject, useEffect, useRef } from "react";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 
@@ -81,7 +81,15 @@ export function PhysicsUpdate({
 
             inverse.copy(object3D.parent!.matrixWorld).invert();
             transform.multiplyMatrices(inverse, matrix);
-            transform.decompose(object3D.position, object3D.quaternion, scale);
+
+            if (object3D instanceof InstancedMesh) {
+              const i = parseInt(uuid.split('/')[1]);
+              object3D.setMatrixAt(i, transform)
+              object3D.instanceMatrix.needsUpdate = true
+            } else {
+              transform.decompose(object3D.position, object3D.quaternion, scale);
+            }
+
           } else {
             // sharedBuffers.rigidBodies.objectMatricesFloatArray.set(
             //   object3D.matrixWorld.elements,

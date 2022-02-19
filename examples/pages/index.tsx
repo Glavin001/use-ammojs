@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -26,6 +27,22 @@ const Home: NextPage = () => {
           <a href="/stress" target="_blank" className={styles.card}>
             <h2>Stress &rarr;</h2>
             <p>Push the physics engine to the limits!</p>
+            <ul>
+              <li>
+                <Link href="/stress?size=10&height=10&instanced=true">
+                  <a target={"_blank"}>
+                    1000 Instanced Boxes
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/stress?size=10&height=10&instanced=false">
+                  <a target={"_blank"}>
+                    1000 Non-Instanced Boxes
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </a>
 
           <a href="/hinges" target="_blank" className={styles.card}>
