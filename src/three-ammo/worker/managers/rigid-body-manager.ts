@@ -91,6 +91,17 @@ function updateBody({ uuid, options }) {
   }
 }
 
+function bulkUpdateBody({ updates = [] }) {
+  // uuid, options
+  // if (bodies[uuid]) {
+  //   bodies[uuid].update(options);
+  //   bodies[uuid].physicsBody!.activate(true);
+  // }
+  updates.forEach((update) => {
+    updateBody(update);
+  });
+}
+
 function bodySetMotionState({ uuid, position, rotation }) {
   const body = bodies[uuid];
   if (body) {
@@ -109,6 +120,12 @@ function bodySetMotionState({ uuid, position, rotation }) {
     body.physicsBody!.setCenterOfMassTransform(transform);
     body.physicsBody!.activate(true);
   }
+}
+
+function bulkSetMotionState({ updates }) {
+  updates.forEach((update) => {
+    bodySetMotionState(update);
+  });
 }
 
 function bodySetLinearVelocity({ uuid, velocity }) {
@@ -304,11 +321,13 @@ export function copyToRigidBodyBuffer() {
 export const rigidBodyEventReceivers = {
   [MessageType.ADD_RIGIDBODY]: addBody,
   [MessageType.UPDATE_RIGIDBODY]: updateBody,
+  [MessageType.BULK_UPDATE_RIGIDBODY]: bulkUpdateBody,
   [MessageType.REMOVE_RIGIDBODY]: removeBody,
   [MessageType.SET_SHAPES_OFFSET]: setShapesOffset,
   [MessageType.RESET_DYNAMIC_BODY]: resetDynamicBody,
   [MessageType.ACTIVATE_BODY]: activateBody,
   [MessageType.SET_MOTION_STATE]: bodySetMotionState,
+  [MessageType.BULK_SET_MOTION_STATE]: bulkSetMotionState,
   [MessageType.SET_LINEAR_VELOCITY]: bodySetLinearVelocity,
   [MessageType.SET_ANGULAR_VELOCITY]: notImplementedEventReceiver,
   [MessageType.APPLY_IMPULSE]: bodyApplyImpulse,

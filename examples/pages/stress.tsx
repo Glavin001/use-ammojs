@@ -125,13 +125,12 @@ const InstancedCubes = ({ size: groupSize, height: groupHeight }: { size: number
   )
 }
 
-
 function StressDemo({ size: groupWidth, height: groupHeight, instanced }: { size: number; height: number; instanced: boolean; }) {
-  const { camera } = useThree()
+  // const { camera } = useThree()
 
-  useEffect(() => {
-    camera.position.y = 5
-  }, [camera])
+  // useEffect(() => {
+  //   camera.position.y = 5
+  // }, [camera])
 
   const groupWidthSq = groupWidth * groupWidth
 

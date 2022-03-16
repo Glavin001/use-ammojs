@@ -1,5 +1,5 @@
 {
-  "version": "0.2.21",
+  "version": "0.2.21-beta.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,7 +27,7 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "name": "use-ammojs",
+  "name": "@glavin001/use-ammojs",
   "description": "Fast physics hooks for use in react-three-fiber. Powered by web-workers and wasm.",
   "author": "notrabs",
   "repository": "https://github.com/notrabs/use-ammojs",

@@ -50,7 +50,7 @@ At the time of writing however use-cannon is more mature and great for most proj
   - [x] Ropes
   - [ ] Support textures on Soft Bodies
   - [ ] Deformables
-- [ ] Add Constraints between Rigid Bodies
+- [x] Add Constraints between Rigid Bodies
 - [ ] Add Constraints to Soft Bodies (ability to pin nodes in place or to Rigid Bodies)
 - [ ] Improve Physics API
   - [ ] Make _all_ props reactive

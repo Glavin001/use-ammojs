@@ -120,6 +120,8 @@ export class Constraint {
 
     Ammo.destroy(transform);
 
+    constraint.setBreakingImpulseThreshold(10000000);
+
     return constraint;
   }
 

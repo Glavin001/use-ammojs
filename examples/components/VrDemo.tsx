@@ -6,11 +6,14 @@ import { Box, OrbitControls, Plane, Sphere, Sky, useMatcapTexture, Text, Stats, 
 // import niceColors from 'nice-color-palettes'
 // import { Color } from 'three'
 import * as THREE from 'three'
+import { Color, Vector3 } from 'three'
+import { Hands, Interactive, } from '@react-three/xr'
 
 // import { usePlane, useBox, useCylinder, Physics, useSphere, Debug, useCompoundBody, useConeTwistConstraint } from '@react-three/cannon'
-import { BodyType, ConstraintType, Physics, PhysicsStats, ShapeType, useRigidBody, useTwoBodyConstraint } from 'use-ammojs'
+import { BodyType, ConstraintType, Physics, PhysicsStats, RigidbodyApi, ShapeType, Triplet, useRigidBody, useTwoBodyConstraint } from 'use-ammojs'
 
-import { Hands, Interactive, } from '@react-three/xr'
+import { Garage } from './Garage';
+import { RockMaterial } from './materials/rock'
 
 // import { joints } from './joints'
 // import { fakeHand } from './hand-faker'
@@ -19,16 +22,17 @@ import { Hands, Interactive, } from '@react-three/xr'
 // import { GearTrain } from './Gears'
 // import { ChainScene } from './Chain'
 
+const FAKE_HANDS = true;
 const SHOULD_MOVE = true;
-const FAKE_HANDS = false;
 const HANDS_USE_CONSTRAINTS = true;
-const MOVE_SPEED = 2; //0.5;
-const SHOW_FAST_HANDS = true;
-const SHOW_PHYSICS_GHOST_HANDS = false;
+const INCLUDE_VELOCITY = true;
+const MOVE_SPEED = 0.5; //2; //0.5;
+const SHOW_FAST_HANDS = false;
+const SHOW_PHYSICS_GHOST_HANDS = true;
 const SHOW_PHYSICS_PHYSICAL_HANDS = true;
 
 function movePos(origPos: THREE.Vector3, t: number) {
-    if (!SHOULD_MOVE) return origPos;
+    if (!SHOULD_MOVE || !FAKE_HANDS) return origPos;
     return {
         x: origPos.x + Math.cos(MOVE_SPEED*t*1.7) * 0.5,
         y: origPos.y - 0.4, //Math.sin(t) * 1,
@@ -225,6 +229,28 @@ function RecordHand({ hand }: { hand: number }) {
 }
 */
 
+function useInterpolatedPosition(api: RigidbodyApi) {
+    const { clock } = useThree()
+    const lastTime = useRef<number>()
+    const [prevPosition] = useState(() => new THREE.Vector3());
+    const v = useMemo(() => new THREE.Vector3(), []);
+    return function setPosition(position: Pick<THREE.Vector3, 'x' | 'y' | 'z'>) {
+        api.setPosition(position as THREE.Vector3);
+
+        const t = clock.getElapsedTime();
+        if (INCLUDE_VELOCITY && lastTime.current) {
+            const delta: number = lastTime.current - t;
+            v.copy(position as THREE.Vector3);
+            v.sub(prevPosition).multiplyScalar(delta * 1000);
+
+            api.setLinearVelocity(v);
+        }
+
+        prevPosition.copy(position as THREE.Vector3);
+        lastTime.current = t;
+    };
+}
+
 const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number }, ref) => {
     // const { gl } = useThree()
     // const handObj = (gl.xr as any).getHand(hand)
@@ -332,10 +358,12 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
             // linearLowerLimit: [-5, 0, 0],
             // angularUpperLimit: [0, 0, 0],
             // angularLowerLimit: [0, 0, 0],
-        });
+        } as any);
     }
 
     const api = HANDS_USE_CONSTRAINTS ? ghostApi : physicalApi
+
+    const setPosition = useInterpolatedPosition(api);
 
     useFastFrame(({ clock }) => {
         if (joint === undefined) return
@@ -353,7 +381,8 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
         //         z: joint.position.z + Math.sin(MOVE_SPEED*t) * 0.5
         //     } as any)
         // } else {
-        api.setPosition(movePos(joint.position, t))
+        // api.setPosition(movePos(joint.position, t))
+        setPosition(movePos(joint.position, t))
         // }
 
         // boxApi.position.set(joint.position.x, joint.position.y, joint.position.z)
@@ -370,7 +399,7 @@ const JointCollider = forwardRef(({ index, hand }: { index: number; hand: number
                 args={[size, 16, 16]}
                 visible={SHOW_PHYSICS_GHOST_HANDS}
             >
-                <meshStandardMaterial wireframe attach="material" />
+                <meshStandardMaterial wireframe attach="material" color="pink" />
             </Sphere>
             )}
             {/* Physical */}
@@ -525,10 +554,11 @@ const Bone = ({ start, end, hand }: any) => {
         // springEnabled: [true, true, true, true, true, true],
         // stiffness: [40, 40, 40, 40, 40, 40],
         // damping: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
-    });
+    } as any);
     }
 
     const api = HANDS_USE_CONSTRAINTS ? ghostApi : apiPhysical
+    const setPosition = useInterpolatedPosition(api);
 
     useFastFrame(({ clock }) => {
         // if (!(startRef && startRef.current && endRef && endRef.current)) {
@@ -556,7 +586,8 @@ const Bone = ({ start, end, hand }: any) => {
         //     z: midPos.z + Math.sin(MOVE_SPEED*t) * 0.5
         // } as any : midPos;
         const newPos = movePos(midPos, t);
-        api.setPosition(newPos)
+        // api.setPosition(newPos)
+        setPosition(newPos)
         fastRef.current?.position.copy(newPos)
 
         // Vector beween 2 points
@@ -657,7 +688,7 @@ const Bone = ({ start, end, hand }: any) => {
                 visible={SHOW_PHYSICS_GHOST_HANDS}
             >
                 <cylinderBufferGeometry args={args as any} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial wireframe color="pink" />
             </mesh>
             )}
             {/* Fast non-physics phantom */}
@@ -765,11 +796,14 @@ function XRControllerCollider(props: any) {
         // []
     )
 
+    const setPosition = useInterpolatedPosition(api);
+
     useFrame(() => {
         // console.log('pos', controller.position)
         if (controller === undefined) return
         // api.position.set(controller.position.x, controller.position.y, controller.position.z)
-        api.setPosition(controller.position)
+        // api.setPosition(controller.position)
+        setPosition(controller.position)
     })
 
     return (
@@ -902,11 +936,16 @@ function Floor() {
         shapeType: ShapeType.BOX,
         collisionFilterGroup: COLLISION_GROUPS.GROUND,
         collisionFilterMask: COLLISION_GROUPS.BOX,
+        position: [0, 0, 0],
     }))
 
     return (
-        <Box ref={groundRef} args={[10, 0.1, 10]} receiveShadow>
-            <meshPhysicalMaterial attach="material" color="grey" />
+        <Box ref={groundRef} args={[10, 0.1, 10]} receiveShadow castShadow>
+            {/* <meshPhysicalMaterial
+                attach="material"
+                color="gray"
+            /> */}
+            <RockMaterial attach='material' />
         </Box>
     )
 }
@@ -949,6 +988,23 @@ export function Scene({ isVr }: { isVr: boolean }) {
             {/* <Sky /> */}
             {/* <Environment background preset="apartment" /> */}
             <Floor />
+            <group
+                rotation={[-Math.PI / 2, 0, 0]}
+                // position={[1, -0.56, 9]}
+
+                // scale={[0.02, 0.02, 0.02]}
+                // position={[0, -1.56, 10]}
+
+                scale={[0.05, 0.05, 0.05]}
+                // position={[0, -3.9178, 20]}
+                position={[0, -4.0, 20]}
+            >
+                {/* <Box args={[100, 100, 100]} castShadow>
+                    <meshPhysicalMaterial attach="material" color="blue" />
+                </Box> */}
+                <Garage />
+            </group>
+
             {/* <Button position={[0.5, 0.5, -0.2]} /> */}
             {/* <Robot
         ref={robotRef}
@@ -971,6 +1027,7 @@ export function Scene({ isVr }: { isVr: boolean }) {
                 <Controllers />
             )}
 
+            {/*
             {[...Array(30)].map((_, i) => {
                 const size = 0.1 + (Math.random() - 0.5) * 0.05;
                 return (
@@ -986,6 +1043,9 @@ export function Scene({ isVr }: { isVr: boolean }) {
                 />
                 );
             })}
+            */}
+
+            <InstancedCubes size={2} height={5} />
 
            {/* {[...Array(1)].map((_, i) => (
                 <PhysicalSphere
@@ -1016,8 +1076,75 @@ export function Scene({ isVr }: { isVr: boolean }) {
     )
 }
 
+interface InstancedGeometryProps {
+    colors: Float32Array;
+    number: number;
+    size: number;
+    groupWidth: number;
+    groupHeight: number;
+}
 
+const Boxes = ({ colors, number, size, groupWidth }: InstancedGeometryProps) => {
+    const args: Triplet = [size, size, size]
 
+    const groupWidthSq = groupWidth * groupWidth;
+
+    const [ref] = useRigidBody((index: number) => {
+        const x = ((index % groupWidth) - groupWidth / 2) * 2 * size
+        const y = Math.floor(index / groupWidthSq) * 2 * size + 2
+        // const y = Math.floor(index / CUBE_ARRAY_SIZE_SQ) * 1 + 0
+        const z = (Math.floor((index % groupWidthSq) / groupWidth) - groupWidth / 2) * 2 * size
+
+        return ({
+            bodyType: BodyType.DYNAMIC,
+            shapeType: ShapeType.BOX,
+            mass: 1,
+            // ...props,
+            position: [x, y, z],
+            // shapeConfig: {
+            //   fit: ShapeFit.MANUAL,
+            //   halfExtents: args.map((v: number) => v / 2),
+            // }
+            collisionFilterGroup: COLLISION_GROUPS.BOX,
+            collisionFilterMask: COLLISION_GROUPS.BOX + COLLISION_GROUPS.GROUND + COLLISION_GROUPS.HAND,
+            // mass: 0.01,
+            friction: 100,
+        });
+    }, null, [groupWidth, groupWidthSq, number])
+
+    return (
+        <instancedMesh receiveShadow castShadow ref={ref} args={[undefined, undefined, number]}>
+            <boxBufferGeometry args={args}>
+                <instancedBufferAttribute attachObject={['attributes', 'color']} args={[colors, 3]} />
+            </boxBufferGeometry>
+            <meshPhysicalMaterial attach="material" color="red" />
+            {/* <meshLambertMaterial vertexColors /> */}
+        </instancedMesh>
+    )
+}
+
+const InstancedCubes = ({ size: groupSize, height: groupHeight }: { size: number; height: number; }) => {
+    const groupWidthSq = groupSize * groupSize;
+    // const [number] = useState(groupWidthSq * groupHeight)
+    const number = groupWidthSq * groupHeight
+    const [boxSize] = useState(0.1)
+
+    const colors = useMemo(() => {
+        const array = new Float32Array(number * 3)
+        const color = new Color()
+        for (let i = 0; i < number; i++) {
+            color
+                .set('red')
+                .convertSRGBToLinear()
+                .toArray(array, i * 3)
+        }
+        return array
+    }, [number])
+
+    return (
+        <Boxes {...{ colors, number, size: boxSize, groupWidth: groupSize, groupHeight: groupHeight, }} />
+    )
+}
 
 
 

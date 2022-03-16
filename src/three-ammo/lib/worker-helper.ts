@@ -5,6 +5,7 @@ import {
   BodyConfig,
   MessageType,
   SerializedMesh,
+  ShapeFit,
   SharedBuffers,
   SharedSoftBodyBuffers,
   SoftBodyConfig,
@@ -25,6 +26,9 @@ export function WorkerHelpers(ammoWorker: Worker) {
 
   let lastRequestId: number = 0;
   let requests: Record<WorkerRequestId, (data: any) => void> = {};
+
+  const bodyUpdates: Array<any> = [];
+  const motionUpdates: Array<any> = [];
 
   return {
     initWorld(worldConfig: WorldConfig, sharedBuffers: SharedBuffers) {
@@ -105,6 +109,7 @@ export function WorkerHelpers(ammoWorker: Worker) {
         return mesh.matrixWorld;
       }
 
+      // if (shapeDescriptor.meshToUse && shapeDescriptor?.shapeConfig?.fit !== ShapeFit.MANUAL) {
       if (shapeDescriptor.meshToUse) {
         inverse.copy(mesh.parent!.matrix).invert();
         transform.multiplyMatrices(inverse, mesh.parent!.matrix);
@@ -142,11 +147,42 @@ export function WorkerHelpers(ammoWorker: Worker) {
     },
 
     updateRigidBody(uuid, options) {
+      /*
       ammoWorker.postMessage({
         type: MessageType.UPDATE_RIGIDBODY,
         uuid,
         options,
       });
+      */
+      bodyUpdates.push({ uuid, options });
+    },
+
+    flushRigidBodyUpdates() {
+      const updatesByUuid: Record<UUID, BodyConfig> = bodyUpdates.reduce(
+        (acc, { uuid, options }) => {
+          if (!acc[uuid]) {
+            acc[uuid] = {};
+          }
+          Object.assign(acc[uuid], options);
+          return acc;
+        },
+        {}
+      );
+      const finalBodyUpdates = Object.keys(updatesByUuid).map((uuid) => ({
+        uuid,
+        options: updatesByUuid[uuid],
+      }));
+
+      if (finalBodyUpdates.length === 0) {
+        return;
+      }
+
+      ammoWorker.postMessage({
+        type: MessageType.BULK_UPDATE_RIGIDBODY,
+        // updates: bodyUpdates,
+        updates: finalBodyUpdates,
+      });
+      bodyUpdates.length = 0;
     },
 
     removeRigidBody(uuid) {
@@ -161,6 +197,7 @@ export function WorkerHelpers(ammoWorker: Worker) {
       sharedSoftBodyBuffers: SharedSoftBodyBuffers,
       softBodyConfig: SoftBodyConfig
     ) {
+      console.log('addSoftBody', isSharedArrayBufferSupported, uuid,softBodyConfig);
       if (isSharedArrayBufferSupported) {
         ammoWorker.postMessage({
           type: MessageType.ADD_SOFTBODY,
@@ -257,6 +294,39 @@ export function WorkerHelpers(ammoWorker: Worker) {
         position,
         rotation,
       });
+      // motionUpdates.push({ uuid, position, rotation });
+    },
+
+    flushMotionUpdates() {
+      const updatesByUuid: Record<UUID, BodyConfig> = motionUpdates.reduce(
+        (acc, { uuid, ...options }) => {
+          if (!acc[uuid]) {
+            acc[uuid] = {};
+          }
+          // Object.assign(acc[uuid], options);
+          Object.assign(acc[uuid], {
+            position: options.position || acc[uuid].position,
+            rotation: options.rotation || acc[uuid].rotation,
+          });
+          return acc;
+        },
+        {}
+      );
+      const finalMotionUpdates = Object.keys(updatesByUuid).map((uuid) => ({
+        uuid,
+        // options: updatesByUuid[uuid],
+        ...updatesByUuid[uuid],
+      }));
+      if (motionUpdates.length === 0) {
+        return;
+      }
+
+      ammoWorker.postMessage({
+        type: MessageType.BULK_SET_MOTION_STATE,
+        // updates: motionUpdates,
+        updates: finalMotionUpdates,
+      });
+      motionUpdates.length = 0;
     },
 
     bodySetLinearVelocity(uuid, velocity) {

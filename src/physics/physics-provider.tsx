@@ -415,9 +415,17 @@ export function Physics({
       );
     }
 
+    const intervalId = setInterval(() => {
+      workerHelpers.flushRigidBodyUpdates();
+      workerHelpers.flushMotionUpdates();
+    // }, 1000 / 120);
+    // }, 1000 / (90 * 2));
+    }, 2);
+
     return () => {
       ammoWorker.terminate();
       setPhysicsState(undefined);
+      clearInterval(intervalId);
     };
   }, []);
 

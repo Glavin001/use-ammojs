@@ -99,8 +99,8 @@ export class RigidBody {
     this.friction = bodyConfig.friction ?? 0.5;
     this.linearDamping = bodyConfig.linearDamping ?? 0.01;
     this.angularDamping = bodyConfig.angularDamping ?? 0.01;
-    this.linearSleepingThreshold = bodyConfig.linearSleepingThreshold ?? 1.6;
-    this.angularSleepingThreshold = bodyConfig.angularSleepingThreshold ?? 2.5;
+    this.linearSleepingThreshold = bodyConfig.linearSleepingThreshold ?? 0; // 1.6;
+    this.angularSleepingThreshold = bodyConfig.angularSleepingThreshold ?? 0; //2.5;
     this.angularFactor = new Vector3(1, 1, 1);
     if (bodyConfig.angularFactor) {
       this.angularFactor.set(bodyConfig.angularFactor.x, bodyConfig.angularFactor.y, bodyConfig.angularFactor.z);

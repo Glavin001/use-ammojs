@@ -26,6 +26,9 @@ export function createCollisionShapes(
   matrixWorld,
   options: ShapeConfig
 ): FinalizedShape | null {
+  // console.log('shape options', options);
+  // console.log('Ammo', Ammo, Ammo._free, Ammo._malloc);
+
   switch (options.type) {
     case ShapeType.BOX:
       return createBoxShape(vertices, matrices, matrixWorld, options);
@@ -516,12 +519,16 @@ export const createVHACDShapes = (function () {
       return [];
     }
 
+    console.log('VHACD:', vertices.length, matrices.length, indexes.length);
+
     const bounds = _computeBounds(vertices, matrices);
     const scale = _computeScale(matrixWorld, options);
+    console.log('bounds scale');
 
     let vertexCount = 0;
     let triCount = 0;
     center.addVectors(bounds.max, bounds.min).multiplyScalar(0.5);
+    console.log('center');
 
     for (let i = 0; i < vertices.length; i++) {
       vertexCount += vertices[i].length / 3;
@@ -622,9 +629,24 @@ export const createVHACDShapes = (function () {
     Ammo.destroy(ch);
     Ammo.destroy(vhacd);
 
+    // console.log('shapes', shapes.length);
+    // console.log(serializeConvexHullShapes(shapes));
+
     return shapes;
   };
 })();
+
+function serializeConvexHullShapes(shapes) {
+  return shapes.map(shape => {
+    const points = Array(shape.getNumVertices()).fill(null)
+      .map((_, i) => {
+        const v = shape.getScaledPoint(i);
+        return [v.x(), v.y(), v.z()];
+      })
+    // console.log(points);
+    return points;
+  });
+}
 
 export const createTriMeshShape = (function () {
   const va = new THREE.Vector3();

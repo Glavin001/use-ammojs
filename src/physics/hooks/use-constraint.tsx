@@ -19,6 +19,18 @@ export type TwoBodyConstraintRefs = {
   bodyBRef: MutableRefObject<Object3D | undefined>;
 };
 
+export type UseSingleBodyConstraintProps = (
+  CommonConstraintConfig &
+  SingleBodyConstraintRefs &
+  SingleBodyConstraintConfig
+);
+
+export type UseTwoBodyConstraintProps = (
+  CommonConstraintConfig &
+  SingleBodyConstraintRefs &
+  SingleBodyConstraintConfig
+);
+
 export type UseConstraintProps = CommonConstraintConfig &
   (
     | (SingleBodyConstraintRefs & SingleBodyConstraintConfig)
@@ -26,18 +38,14 @@ export type UseConstraintProps = CommonConstraintConfig &
   );
 
 export function useSingleBodyConstraint(
-  props: CommonConstraintConfig &
-    SingleBodyConstraintRefs &
-    SingleBodyConstraintConfig,
+  props: UseSingleBodyConstraintProps,
   deps: DependencyList = []
 ) {
   return useConstraint(props, deps);
 }
 
 export function useTwoBodyConstraint(
-  props: CommonConstraintConfig &
-    TwoBodyConstraintRefs &
-    TwoBodyConstraintConfig,
+  props: UseTwoBodyConstraintProps,
   deps: DependencyList = []
 ) {
   return useConstraint(props, deps);
@@ -54,15 +62,19 @@ export function useConstraint(props: UseConstraintProps, deps: DependencyList = 
   const physicsContext = useAmmoPhysicsContext();
   const {
     addConstraint,
-    updateConstraint,
+    // updateConstraint,
     removeConstraint,
   } = physicsContext;
 
   const [constraintId] = useState(() => MathUtils.generateUUID());
 
-  const allDeps = [props.bodyARef.current, props.bodyBRef?.current].concat(deps)
+  const allDeps = [
+    props.bodyARef, props.bodyARef.current,
+    props.bodyBRef, props.bodyBRef?.current,
+  ].concat(deps)
 
   useEffect(() => {
+    console.log('refresh constraint', props, deps);
     const uuidA: UUID | undefined =
       props.bodyARef.current?.userData?.useAmmo?.rigidBody?.uuid;
     const uuidB: UUID | undefined =
@@ -79,6 +91,7 @@ export function useConstraint(props: UseConstraintProps, deps: DependencyList = 
       );
 
       return () => {
+        console.log('remove constraint', constraintId);
         removeConstraint(constraintId);
       };
     } else if (uuidA && uuidB) {
@@ -92,11 +105,14 @@ export function useConstraint(props: UseConstraintProps, deps: DependencyList = 
       );
 
       return () => {
+        console.log('remove constraint', constraintId);
         removeConstraint(constraintId);
       };
     }
 
-    return () => {};
+    return () => {
+      console.log('remove constraint', constraintId);
+    };
   }, allDeps);
 
   return [

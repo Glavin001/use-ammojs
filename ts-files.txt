@@ -1,0 +1,835 @@
+src/three-ammo/worker/managers/world-manager.ts(16,30): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/managers/world-manager.ts(17,30): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/managers/world-manager.ts(18,27): error TS2694: Namespace 'Ammo' has no exported member 'btQuaternion'.
+src/three-ammo/worker/utils.ts(22,11): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/utils.ts(23,11): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/utils.ts(49,41): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/utils.ts(53,39): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/utils.ts(58,16): error TS2694: Namespace 'Ammo' has no exported member 'btQuaternion'.
+src/three-ammo/worker/utils.ts(69,47): error TS2694: Namespace 'Ammo' has no exported member 'btQuaternion'.
+src/three-ammo/worker/utils.ts(74,21): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-ammo/worker/utils.ts(82,24): error TS2339: Property 'btQuaternion' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/utils.ts(85,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/utils.ts(88,51): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-ammo/worker/wrappers/rigid-body.ts(39,17): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/wrappers/rigid-body.ts(56,21): error TS2694: Namespace 'Ammo' has no exported member 'btRigidBody'.
+src/three-ammo/worker/wrappers/rigid-body.ts(57,23): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/wrappers/rigid-body.ts(60,22): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-ammo/worker/wrappers/rigid-body.ts(61,19): error TS2694: Namespace 'Ammo' has no exported member 'btQuaternion'.
+src/three-ammo/worker/wrappers/rigid-body.ts(62,22): error TS2694: Namespace 'Ammo' has no exported member 'btDefaultMotionState'.
+src/three-ammo/worker/wrappers/rigid-body.ts(63,23): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/wrappers/rigid-body.ts(66,17): error TS2694: Namespace 'Ammo' has no exported member 'btRigidBodyConstructionInfo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(69,18): error TS2694: Namespace 'Ammo' has no exported member 'btTriangleMesh'.
+src/three-ammo/worker/wrappers/rigid-body.ts(74,16): error TS2694: Namespace 'Ammo' has no exported member 'btVector3'.
+src/three-ammo/worker/wrappers/rigid-body.ts(75,23): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-ammo/worker/wrappers/rigid-body.ts(76,23): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-ammo/worker/wrappers/rigid-body.ts(87,29): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(126,28): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(127,35): error TS2339: Property 'btTransform' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(128,35): error TS2339: Property 'btTransform' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(145,34): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(153,33): error TS2339: Property 'btTransform' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(155,30): error TS2339: Property 'btQuaternion' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(160,33): error TS2339: Property 'btDefaultMotionState' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(165,34): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(167,23): error TS2339: Property 'setLocalScaling' does not exist on type 'FinalizedShape'.
+src/three-ammo/worker/wrappers/rigid-body.ts(169,28): error TS2339: Property 'btRigidBodyConstructionInfo' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(176,33): error TS2339: Property 'btRigidBody' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(187,36): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(193,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(242,25): error TS2339: Property 'setLocalScaling' does not exist on type 'FinalizedShape'.
+src/three-ammo/worker/wrappers/rigid-body.ts(265,48): error TS2694: Namespace 'Ammo' has no exported member 'btConvexHullShape'.
+src/three-ammo/worker/wrappers/rigid-body.ts(394,38): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(400,12): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(410,28): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(411,33): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(416,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(418,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(419,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(420,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(421,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(422,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(423,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(424,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(425,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(426,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/rigid-body.ts(490,23): error TS2339: Property 'calculateLocalInertia' does not exist on type 'FinalizedShape'.
+src/three-ammo/worker/wrappers/soft-body.ts(16,21): error TS2694: Namespace 'Ammo' has no exported member 'btSoftBody'.
+src/three-ammo/worker/wrappers/soft-body.ts(79,39): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(85,37): error TS2339: Property 'btSoftBody' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(104,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(136,26): error TS2694: Namespace 'Ammo' has no exported member 'btCollisionObject'.
+src/three-ammo/worker/wrappers/soft-body.ts(138,12): error TS2339: Property 'btCollisionObject' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(164,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(170,32): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(199,12): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/soft-body.ts(229,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(6,32): error TS2694: Namespace 'Ammo' has no exported member 'btDefaultCollisionConfiguration'.
+src/three-ammo/worker/wrappers/world.ts(7,20): error TS2694: Namespace 'Ammo' has no exported member 'btCollisionDispatcher'.
+src/three-ammo/worker/wrappers/world.ts(8,20): error TS2694: Namespace 'Ammo' has no exported member 'btDbvtBroadphase'.
+src/three-ammo/worker/wrappers/world.ts(9,16): error TS2694: Namespace 'Ammo' has no exported member 'btSequentialImpulseConstraintSolver'.
+src/three-ammo/worker/wrappers/world.ts(10,22): error TS2694: Namespace 'Ammo' has no exported member 'btSoftRigidDynamicsWorld'.
+src/three-ammo/worker/wrappers/world.ts(21,24): error TS2694: Namespace 'Ammo' has no exported member 'btDefaultSoftBodySolver'.
+src/three-ammo/worker/wrappers/world.ts(22,25): error TS2694: Namespace 'Ammo' has no exported member 'btSoftBodyHelpers'.
+src/three-ammo/worker/wrappers/world.ts(31,44): error TS2339: Property 'btSoftBodyRigidBodyCollisionConfiguration' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(32,32): error TS2339: Property 'btCollisionDispatcher' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(35,32): error TS2339: Property 'btDbvtBroadphase' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(36,28): error TS2339: Property 'btSequentialImpulseConstraintSolver' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(37,36): error TS2339: Property 'btDefaultSoftBodySolver' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(38,34): error TS2339: Property 'btSoftRigidDynamicsWorld' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(53,37): error TS2339: Property 'btSoftBodyHelpers' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(60,27): error TS2694: Namespace 'Ammo' has no exported member 'btRigidBody'.
+src/three-ammo/worker/wrappers/world.ts(131,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(132,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(133,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(134,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(135,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(136,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(137,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(138,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(163,30): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-ammo/worker/wrappers/world.ts(172,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(7,46): error TS2694: Namespace 'Ammo' has no exported member 'btCollisionShape'.
+src/three-to-ammo/index.ts(10,24): error TS2694: Namespace 'Ammo' has no exported member 'btTransform'.
+src/three-to-ammo/index.ts(118,34): error TS2339: Property 'btCompoundShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(149,34): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(154,35): error TS2339: Property 'btBoxShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(155,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(181,34): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(189,25): error TS2339: Property 'btCylinderShapeX' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(191,25): error TS2339: Property 'btCylinderShapeZ' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(194,25): error TS2339: Property 'btCylinderShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(197,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(227,25): error TS2339: Property 'btCapsuleShapeX' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(229,25): error TS2339: Property 'btCapsuleShapeZ' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(232,25): error TS2339: Property 'btCapsuleShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(264,25): error TS2339: Property 'btConeShapeX' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(266,25): error TS2339: Property 'btConeShapeZ' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(269,25): error TS2339: Property 'btConeShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(300,35): error TS2339: Property 'btSphereShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(320,29): error TS2339: Property 'btConvexHullShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(323,35): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(329,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(337,31): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(338,35): error TS2339: Property 'btConvexHullShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(377,34): error TS2339: Property 'btShapeHull' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(379,12): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(380,33): error TS2339: Property 'btConvexHullShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(385,12): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(388,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(453,25): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(454,28): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(471,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(472,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(473,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(479,16): error TS2339: Property 'HEAP32' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(484,16): error TS2339: Property 'HEAP32' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(491,10): error TS2339: Property '_free' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(492,10): error TS2339: Property '_free' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(497,29): error TS2339: Property 'btConvexHullShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(501,31): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(502,34): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(507,35): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(508,25): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(509,25): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(510,25): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(513,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(597,25): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(598,28): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(611,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(612,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(613,14): error TS2339: Property 'HEAPF64' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(619,16): error TS2339: Property 'HEAP32' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(624,16): error TS2339: Property 'HEAP32' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(631,10): error TS2339: Property '_free' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(632,10): error TS2339: Property '_free' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(637,30): error TS2339: Property 'ConvexHull' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(643,29): error TS2339: Property 'btConvexHullShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(647,35): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(653,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(658,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(659,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(702,26): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(703,26): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(704,26): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(705,30): error TS2339: Property 'btTriangleMesh' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(761,33): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(763,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(765,37): error TS2339: Property 'btBvhTriangleMeshShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(767,38): error TS2339: Property 'btTriangleInfoMap' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(778,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(779,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(780,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(783,20): error TS2339: Property 'setMargin' does not exist on type 'FinalizedShape'.
+src/three-to-ammo/index.ts(820,21): error TS2339: Property '_malloc' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(829,12): error TS2339: Property 'HEAPF32' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(836,35): error TS2339: Property 'btHeightfieldTerrainShape' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(848,26): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(850,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(864,24): error TS2694: Namespace 'Ammo' has no exported member 'btCollisionShape'.
+src/three-to-ammo/index.ts(870,35): error TS2339: Property 'btTransform' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(871,29): error TS2339: Property 'btQuaternion' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(884,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(885,8): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(888,33): error TS2339: Property 'btVector3' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(890,10): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(900,14): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(904,14): error TS2339: Property '_free' does not exist on type 'typeof Ammo'.
+src/three-to-ammo/index.ts(913,12): error TS2339: Property 'destroy' does not exist on type 'typeof Ammo'.
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es5.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2016.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2019.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2021.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.esnext.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.dom.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.webworker.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.scripthost.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.core.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.collection.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.generator.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.iterable.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.promise.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.proxy.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.reflect.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.symbol.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2016.array.include.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.object.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.string.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.intl.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.intl.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.promise.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2018.regexp.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2019.array.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2019.object.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2019.string.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2019.symbol.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.bigint.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.promise.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.sharedmemory.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.string.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2020.intl.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2021.promise.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2021.string.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2021.weakref.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.es2021.intl.d.ts
+/workspaces/use-ammojs/node_modules/typescript/lib/lib.esnext.intl.d.ts
+/workspaces/use-ammojs/node_modules/tslib/tslib.d.ts
+/workspaces/use-ammojs/node_modules/@types/react/global.d.ts
+/workspaces/use-ammojs/node_modules/csstype/index.d.ts
+/workspaces/use-ammojs/node_modules/@types/prop-types/index.d.ts
+/workspaces/use-ammojs/node_modules/@types/scheduler/tracing.d.ts
+/workspaces/use-ammojs/node_modules/@types/react/index.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/constants.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/Three.Legacy.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Quaternion.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Euler.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/Layers.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/scenes/Fog.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Vector2.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Triangle.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Box3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Sphere.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Line3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Plane.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/EventDispatcher.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/shaders/UniformsLib.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/shaders/ShaderLib.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/Texture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/Material.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/scenes/Scene.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLCapabilities.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLExtensions.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLShader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Vector4.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLState.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLProperties.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLTextures.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLUniforms.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLProgram.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLInfo.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLObjects.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Group.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/InterleavedBuffer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/InterleavedBufferAttribute.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/BufferGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLRenderLists.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/LightShadow.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/Light.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLShadowMap.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/DepthTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGLRenderTarget.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webxr/WebXR.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webxr/WebXRManager.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/DataTexture3D.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/DataTexture2DArray.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGLRenderer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Ray.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/Raycaster.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Interpolant.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/interpolants/DiscreteInterpolant.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/interpolants/LinearInterpolant.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/interpolants/CubicInterpolant.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/KeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Bone.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/AnimationClip.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/Object3D.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/Camera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Spherical.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Cylindrical.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Vector3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Matrix4.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Matrix3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/BufferAttribute.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Color.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/utils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/VectorKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/StringKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/QuaternionKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/NumberKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/ColorKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/tracks/BooleanKeyframeTrack.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/PropertyMixer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/PropertyBinding.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/AnimationUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/AnimationObjectGroup.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/AnimationAction.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/animation/AnimationMixer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/audio/AudioContext.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/audio/AudioListener.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/audio/Audio.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/audio/PositionalAudio.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/audio/AudioAnalyser.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/PerspectiveCamera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/StereoCamera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/OrthographicCamera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/CubeTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGLCubeRenderTarget.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/CubeCamera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/cameras/ArrayCamera.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/Uniform.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/InstancedBufferGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/InstancedInterleavedBuffer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/InstancedBufferAttribute.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/GLBufferAttribute.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/core/Clock.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/objects/ImmediateRenderObject.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/Curve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/EllipseCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/ArcCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/CatmullRomCurve3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/CubicBezierCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/CubicBezierCurve3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/LineCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/LineCurve3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/QuadraticBezierCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/QuadraticBezierCurve3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/SplineCurve.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/curves/Curves.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/CurvePath.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/Path.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/Shape.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/ShapePath.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/core/Font.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/DataUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/ImageUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/ShapeUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/extras/PMREMGenerator.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/BoxGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/CircleGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/CylinderGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/ConeGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/PolyhedronGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/DodecahedronGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/EdgesGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/ExtrudeGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/IcosahedronGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/LatheGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/OctahedronGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/ParametricGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/PlaneGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/RingGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/ShapeGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/SphereGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/TetrahedronGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/TextGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/TorusGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/TorusKnotGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/TubeGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/WireframeGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/geometries/Geometries.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Line.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/LineSegments.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/SpotLightHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/SkeletonHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/PointLightShadow.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/PointLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/PointLightHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/HemisphereLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshBasicMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/HemisphereLightHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/GridHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/PolarGridHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/DirectionalLightShadow.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/DirectionalLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/DirectionalLightHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/CameraHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/BoxHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/Box3Helper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/PlaneHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Mesh.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/ArrowHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/helpers/AxesHelper.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/SpotLightShadow.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/SpotLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/RectAreaLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/AmbientLight.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/SphericalHarmonics3.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/LightProbe.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/AmbientLightProbe.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/lights/HemisphereLightProbe.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/Loader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/LoadingManager.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/AnimationLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/CompressedTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/CompressedTextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/DataTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/DataTextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/CubeTextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/TextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/ObjectLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/MaterialLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/BufferGeometryLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/ImageLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/ImageBitmapLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/FontLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/FileLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/LoaderUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/Cache.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/loaders/AudioLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/ShadowMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/SpriteMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/ShaderMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/RawShaderMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/PointsMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshStandardMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshPhysicalMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshPhongMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshToonMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshNormalMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshLambertMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshDepthMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshDistanceMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/MeshMatcapMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/LineBasicMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/LineDashedMaterial.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/materials/Materials.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/interpolants/QuaternionLinearInterpolant.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Sprite.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Frustum.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/Box2.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/math/MathUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/LOD.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/InstancedMesh.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Skeleton.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/SkinnedMesh.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/LineLoop.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/objects/Points.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGLMultisampleRenderTarget.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGLMultipleRenderTargets.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/WebGL1Renderer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/shaders/UniformsUtils.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/shaders/ShaderChunk.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLBufferRenderer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLClipping.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLCubeUVMaps.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLAttributes.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLGeometries.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLIndexedBufferRenderer.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLLights.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLCubeMaps.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLBindingStates.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webgl/WebGLPrograms.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/renderers/webxr/WebXRController.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/scenes/FogExp2.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/VideoTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/textures/CanvasTexture.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/src/Three.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/index.d.ts
+/workspaces/use-ammojs/src/three-ammo/lib/types.ts
+/workspaces/use-ammojs/src/three-ammo/worker/utils.ts
+/workspaces/use-ammojs/src/utils/notEmpty.ts
+/workspaces/use-ammojs/src/three-to-ammo/index.ts
+/workspaces/use-ammojs/src/utils/utils.ts
+/workspaces/use-ammojs/src/three-ammo/lib/worker-helper.ts
+/workspaces/use-ammojs/src/physics/physics-context.tsx
+/workspaces/use-ammojs/src/three-ammo/lib/constants.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/MD2CharacterComplex.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/ConvexObjectBreaker.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/MorphBlendMesh.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/GPUComputationRenderer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/Gyroscope.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/MorphAnimMesh.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/RollerCoaster.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/WebGL.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/MD2Character.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/Volume.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/VolumeSlice.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/misc/TubePainter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/renderers/CSS2DRenderer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/renderers/CSS3DRenderer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/renderers/Projector.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/renderers/SVGRenderer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/modifiers/CurveModifier.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/modifiers/SimplifyModifier.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/modifiers/EdgeSplitModifier.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/modifiers/TessellateModifier.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/NodeUniform.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/NodeBuilder.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/TempNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/InputNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/UVNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/TextureNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/FloatNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/StructNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/FunctionNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/misc/TextureCubeUVNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/misc/TextureCubeNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/Vector2Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/misc/NormalMapNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/misc/BumpMapNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/NodeFrame.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/RawNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/NodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/StandardNodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/BasicNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/StandardNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/PropertyNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/MeshStandardNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/PhongNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/nodes/SpriteNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/PhongNodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/MeshStandardNodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/BasicNodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/materials/SpriteNodeMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/VarNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/ExpressionNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/FunctionCallNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/NodeUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/AttributeNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/NodeLib.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/core/ConstNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/CameraNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/NormalNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/ReflectNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/LightNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/PositionNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/ResolutionNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/ScreenUVNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/accessors/ColorsNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/SwitchNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/BypassNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/Vector3Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/VelocityNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/ColorSpaceNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/MaxMIPLevelNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/SpecularMIPLevelNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/Matrix3Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/UVTransformNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/JoinNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/utils/TimerNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/math/OperatorNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/math/MathNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/math/CondNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/BoolNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/IntNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/Vector4Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/ColorNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/Matrix4Node.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/CubeTextureNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/ScreenNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Reflector.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/ReflectorRTT.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/ReflectorNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/inputs/RTTNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/procedural/NoiseNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/procedural/CheckerNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/effects/BlurNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/effects/ColorAdjustmentNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/effects/LuminanceNode.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/postprocessing/NodePostProcessing.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/Nodes.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/Pass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/ShaderPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/nodes/postprocessing/NodePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/GLTFExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/USDZExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/PLYExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/DRACOExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/ColladaExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/MMDExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/STLExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/exporters/OBJExporter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/environments/RoomEnvironment.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/animation/AnimationClipCreator.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/animation/CCDIKSolver.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/animation/MMDPhysics.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/animation/MMDAnimationHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Refractor.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/ShadowMesh.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Lensflare.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Water.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/MarchingCubes.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/LightningStrike.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/LightningStorm.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/ReflectorForSSRPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Sky.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/objects/Water2.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/SceneUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/UVsDebug.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/GeometryUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/RoughnessMipmapper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/SkeletonUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/ShadowMapViewer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/BufferGeometryUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/utils/GeometryCompressionUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BokehShader2.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/cameras/CinematicCamera.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/ConvexHull.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/MeshSurfaceSampler.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/SimplexNoise.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/OBB.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/Capsule.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/ColorConverter.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/ImprovedNoise.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/Octree.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/math/Lut.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/experimental/CameraControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/FirstPersonControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/TransformControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/DragControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/PointerLockControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/DeviceOrientationControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/TrackballControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/OrbitControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/controls/FlyControls.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/LUTPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/ClearPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/GlitchPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/HalftonePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SMAAPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/FilmPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/OutlinePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SSAOPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SavePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/BokehPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/TexturePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/AdaptiveToneMappingPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/UnrealBloomPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/CubeTexturePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SAOPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/AfterimagePass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/MaskPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/EffectComposer.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/DotScreenPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SSRPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/SSAARenderPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/TAARenderPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/RenderPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/postprocessing/BloomPass.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/XRHandPrimitiveModel.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/XRHandOculusMeshModel.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/XRHandModelFactory.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/XREstimatedLight.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/VRButton.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/webxr/ARButton.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/ParametricGeometries.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/ConvexGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/RoundedBoxGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/BoxLineGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/DecalGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/geometries/TeapotGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/csm/Frustum.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/csm/CSM.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/csm/Shader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/csm/CSMHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SMAAShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/HalftoneShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ConvolutionShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SAOShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/GodRaysShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/LuminosityShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/MirrorShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ToneMapShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BleachBypassShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BlendShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/KaleidoShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ParallaxShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/VerticalBlurShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ColorCorrectionShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/PixelShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/FocusShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/WaterRefractionShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/RGBShiftShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/TriangleBlurShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/FilmShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SepiaShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BokehShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/FXAAShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/AfterimageShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/DotScreenShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SubsurfaceScatteringShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ToonShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/DepthLimitedBlurShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/NormalMapShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/FreiChenShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/VolumeShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/HorizontalTiltShiftShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/VerticalTiltShiftShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BrightnessContrastShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SobelOperatorShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SSAOShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/GammaCorrectionShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/VignetteShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/HorizontalBlurShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/UnpackDepthRGBAShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/FresnelShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/HueSaturationShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/DigitalGlitch.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/BasicShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/CopyShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/LuminosityHighPassShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/DOFMipMapShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/SSRShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/TechnicolorShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/shaders/ColorifyShader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/interactive/SelectionBox.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/interactive/SelectionHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/physics/AmmoPhysics.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/ParallaxBarrierEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/PeppersGhostEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/OutlineEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/AnaglyphEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/AsciiEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/effects/StereoEffect.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/FBXLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/TGALoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/LUTCubeLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/NRRDLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/STLLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/MTLLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/XLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/BVHLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/ColladaLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/KMZLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/DRACOLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/KTX2Loader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/GLTFLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/VRMLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/VRMLLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/LottieLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/TTFLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/RGBELoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/MDDLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/EXRLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/3MFLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/XYZLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/VTKLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/LUT3dlLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/DDSLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/PVRLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/GCodeLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/BasisTextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/TDSLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/LDrawLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/SVGLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/3DMLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/OBJLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/AMFLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/MMDLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/MD2Loader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/KTXLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/TiltLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/HDRCubeTextureLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/PDBLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/PRWMLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/RGBMLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/VOXLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/PCDLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/LWOLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/loaders/PLYLoader.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/LineSegmentsGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/LineGeometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/types/shared.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/LineMaterial.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/Wireframe.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/WireframeGeometry2.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/LineSegments2.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lines/Line2.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/helpers/LightProbeHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/helpers/VertexTangentsHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/helpers/PositionalAudioHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/helpers/VertexNormalsHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/helpers/RectAreaLightHelper.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lights/RectAreaLightUniformsLib.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/lights/LightProbeGenerator.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/curves/NURBSUtils.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/curves/NURBSCurve.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/curves/NURBSSurface.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/curves/CurveExtras.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/deprecated/Geometry.d.ts
+/workspaces/use-ammojs/node_modules/three-stdlib/index.d.ts
+/workspaces/use-ammojs/node_modules/zustand/vanilla.d.ts
+/workspaces/use-ammojs/node_modules/zustand/index.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/core/renderer.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/core/store.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/core/events.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/three-types.d.ts
+/workspaces/use-ammojs/node_modules/react-use-measure/types/index.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/core/loop.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/web/events.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/examples/jsm/loaders/DRACOLoader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/examples/jsm/loaders/KTX2Loader.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/examples/jsm/loaders/GLTFLoader.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/core/hooks.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/web/index.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/web/Canvas.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/declarations/src/index.d.ts
+/workspaces/use-ammojs/node_modules/@react-three/fiber/dist/react-three-fiber.cjs.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/examples/jsm/lines/LineSegmentsGeometry.d.ts
+/workspaces/use-ammojs/node_modules/@types/three/examples/jsm/lines/LineGeometry.d.ts
+/workspaces/use-ammojs/src/physics/physics-update.tsx
+/workspaces/use-ammojs/src/physics/physics-debug.tsx
+/workspaces/use-ammojs/src/three-ammo/worker/ammo-wasm-initialize.ts
+/workspaces/use-ammojs/src/three-ammo/worker/wrappers/world.ts
+/workspaces/use-ammojs/src/three-ammo/worker/wrappers/rigid-body.ts
+/workspaces/use-ammojs/src/three-ammo/worker/managers/shared.ts
+/workspaces/use-ammojs/src/three-ammo/worker/wrappers/soft-body.ts
+/workspaces/use-ammojs/src/three-ammo/worker/managers/soft-body-manager.ts
+/workspaces/use-ammojs/src/three-ammo/worker/managers/world-manager.ts
+/workspaces/use-ammojs/src/physics/physics-provider.tsx
+/workspaces/use-ammojs/src/physics/api/rigidbody-api.tsx
+/workspaces/use-ammojs/src/physics/api/softbody-api.tsx
+/workspaces/use-ammojs/src/physics/components/physics-stats.tsx
+/workspaces/use-ammojs/src/physics/hooks/use-ammo.tsx
+/workspaces/use-ammojs/src/utils/useForwardedRef.tsx
+/workspaces/use-ammojs/src/utils/isRef.ts
+/workspaces/use-ammojs/src/physics/hooks/use-rigidbody.tsx
+/workspaces/use-ammojs/src/physics/hooks/use-softbody.tsx
+/workspaces/use-ammojs/src/physics/api/constraint-api.tsx
+/workspaces/use-ammojs/src/physics/hooks/use-constraint.tsx
+/workspaces/use-ammojs/src/physics/index.tsx
+/workspaces/use-ammojs/src/index.tsx
+/workspaces/use-ammojs/src/types/ammo-debug-drawer.d.ts
+/workspaces/use-ammojs/src/types/index.d.ts

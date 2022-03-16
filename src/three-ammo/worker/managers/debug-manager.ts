@@ -34,6 +34,7 @@ function enableDebug({ enable, debugSharedArrayBuffer }) {
 function updateDebugMode({ debugMode }) {
   if (!world.debugDrawer) {
     console.warn("Debug drawer not initialized");
+    return;
   }
 
   world.debugDrawer.setDebugMode(debugMode);

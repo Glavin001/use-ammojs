@@ -53,25 +53,36 @@ function Demo() {
                 {Array(5)
                     .fill(null)
                     .map((_, index) => {
-                      return <PhysicalBox key={index} position={[Math.random() / 2, 15 + index * 2, 0]} />
+                      return <PhysicalBox
+                        key={index}
+                        args={[0.5, 0.5, 0.5]}
+                        position={[Math.random() / 2, 15 + index * 2, 0]}
+                      />
                     })}
-                
                 {Array(5)
                     .fill(null)
                     .map((_, index) => {
                         const position = [index * 2 - 10, 2, 0]
                         const pressure = index * 1 + 0.5
-
                         return (
-                          <PhysicalBall key={index} position={position} pressure={pressure} />
+                          <PhysicalSphere
+                            key={index}
+                            args={[0.5]}
+                            position={position}
+                            pressure={pressure}
+                          />
                         )
                     })}
                 {Array(5)
                     .fill(null)
                     .map((_, index) => {
-                        return <PhysicalCylinder key={index} position={[Math.random() / 2, 15 + index * 2, 0]} />
+                        return <PhysicalCylinder
+                          key={index}
+                          args={[0.25, 0.25, 1, 16]}
+                          position={[Math.random() / 2, 15 + index * 2, 0]}
+                        />
                     })}
-                
+
                 <Vehicle />
 
                 <Ground />
@@ -121,15 +132,17 @@ const PhysicalCylinder: typeof Cylinder = forwardRef<any, any>((props = {}, fwdR
         // position,
         // friction: 0.9,
         mass: 1,
-    }), fwdRef as any, [JSON.stringify(props)])
+    }), fwdRef as any, [
+      // JSON.stringify(props)
+    ])
 
     const { friction } = useControls('Wheels', {
-      friction: 0.5,
+      friction: 0.8,
     });
 
     useEffect(() => {
       api.updateBodyOptions({ friction });
-    }, [friction]);
+    }, [friction, api]);
 
     return (
         <Cylinder ref={ref} castShadow args={[0.5, 0.5, 2, 16]} {...props}>
@@ -160,28 +173,38 @@ PhysicalBox.displayName = 'PhysicalBox';
 
 const Vehicle = () => {
   const vehicleOptions = useControls('Vehicle', {
+    position: [0, 5, 0],
     body: folder({
       bodySize: {
         label: 'Size',
-        value: [5, 1, 1],
+        value: [1.0, 0.6, 0.2], //[5, 1, 1],
       },
     }),
     wheels: folder({
-      radiusTop: 1.5,
-      radiusBottom: 1.5,
-      height: 1,
+      radiusTop: {
+        value: 0.25, //1.5,
+        step: 0.1,
+      },
+      radiusBottom: {
+        value: 0.25, //1.5,
+        step: 0.1,
+      },
+      height: {
+        value: 0.2, //1,
+        step: 0.1,
+      },
       radialSegments: 16,
       heightSegments: 16,
       front: {
-        value: 2.5,
+        value: 0.5, //2.5,
         step: 0.1,
       },
       back: {
-        value: -1.5,
+        value: -0.5, //-1.5,
         step: 0.1,
       },
       side: {
-        value: 2.5,
+        value: 0.5, //2.5,
         step: 0.1,
       },
       up: {
@@ -210,7 +233,7 @@ const Vehicle = () => {
     */
   });
   const movementOptions = useControls('Movement', {
-    velocity: 10,
+    velocity: 15,
   });
   const keyboard = useKeyControls();
   // const velocityRef = useRef({
@@ -231,7 +254,8 @@ const Vehicle = () => {
   const { bodySize, front, back, side, up } = vehicleOptions;
   const wheels = vehicleOptions;
   const wheelArgs = [ wheels.radiusTop, wheels.radiusBottom, wheels.height, wheels.radialSegments, wheels.heightSegments ];
-  const posY = 5;
+  // const posY = 5;
+  const posY = vehicleOptions.position[1];
 
   useFrame(() => {
     const { velocity } = movementOptions;
@@ -256,7 +280,7 @@ const Vehicle = () => {
     
     const vt = isTurning ? -1 : 1;
     */
-    const vs = (shouldMove ? 1 : 0) * (backward ? -1 : 1);
+    const vs = (shouldMove ? 1 : 0) * (backward ? 1 : -1);
     // const vSpin = shouldSpin ? 1 : (isTurning ? 0.5 : 0);
     // const vLeft = left ? 1 : (right ? -vSpin : 0);
     // const vRight = right ? 1 : (left ? -vSpin : 0);
@@ -289,12 +313,23 @@ const Vehicle = () => {
     // }));
   });
 
+  const wheelPos = useMemo(() => ([5, posY, 0]), [posY]);
+
+  console.log('Vehicle', JSON.stringify({
+    vehicleOptions,
+    movementOptions,
+    wheelArgs,
+  }));
   return (
-    <VehicleBody position={[0, posY, 0]} args={bodySize}>
-      <Wheel args={wheelArgs} position={[5, posY, 0]} pivot={{ x: front, y: side, z: up }} velocity={frontLeftVelocity} />
-      <Wheel args={wheelArgs} position={[5, posY, 0]} pivot={{ x: front, y: -side, z: up }} velocity={frontRightVelocity} />
-      <Wheel args={wheelArgs} position={[5, posY, 0]} pivot={{ x: back, y: side, z: up }} velocity={backLeftVelocity} />
-      <Wheel args={wheelArgs} position={[5, posY, 0]} pivot={{ x: back, y: -side, z: up }} velocity={backRightVelocity} />
+    <VehicleBody
+      position={vehicleOptions.position}
+      // position={[0, posY, 0]}
+      args={bodySize}
+    >
+      <Wheel args={wheelArgs} position={wheelPos} pivot={{ x: front, y: side, z: up }} velocity={frontLeftVelocity} />
+      <Wheel args={wheelArgs} position={wheelPos} pivot={{ x: front, y: -side, z: up }} velocity={frontRightVelocity} />
+      <Wheel args={wheelArgs} position={wheelPos} pivot={{ x: back, y: side, z: up }} velocity={backLeftVelocity} />
+      <Wheel args={wheelArgs} position={wheelPos} pivot={{ x: back, y: -side, z: up }} velocity={backRightVelocity} />
     </VehicleBody>
   )
 }
@@ -335,11 +370,11 @@ const Wheel = ({
   const parentContext = useContext(context)
   const wheelRef = useRef();
   const [ parentRef ] = parentContext;
-  const apiRef = useRef<any>(null);
+  // const apiRef = useRef<any>(null);
 
   const [,, hingeApi] = useTwoBodyConstraint({
     bodyARef: parentRef as any,
-    bodyBRef: wheelRef,
+    bodyBRef: wheelRef as any,
     type: ConstraintType.HINGE,
     // pivot: { x: 1, y: -1.5, z: 0 },
     pivot,
@@ -356,29 +391,30 @@ const Wheel = ({
     //   position: { x: 0, y: 0, z: 0 } as any,
     //   rotation: { x: 0, y: 0, z: 0, w: 1 } as any,
     // } as any,
-  }, [
+  } as any, [
     // parentRef,
     // wheelRef,
-    // pivot,
+    pivot,
     parentContext,
+    args,
     JSON.stringify({ args, pivot, position, rotation }),
     // position[0], position[1], position[2]
   ]);
-  apiRef.current = hingeApi;
+  // apiRef.current = hingeApi;
 
   // console.log('wheel', { parentRef, wheelRef, position, pivot });
 
   useFrame(({ clock }) => {
     // console.log('hingeApi', hingeApi);
     // const velocity = 10;
-    const hingeApi = apiRef.current;
+    // const hingeApi = apiRef.current;
     if (!hingeApi) {
       return;
     }
     const velocity = velocityRef?.current;
     // console.log('velocity', velocity);
     if (velocity) {
-      const t = clock.getElapsedTime();
+      // const t = clock.getElapsedTime();
       // const v = Math.sin(t) * velocity;
       const v = velocity;
       hingeApi.enableAngularMotor(true, v, 100);
@@ -399,16 +435,19 @@ const Wheel = ({
 }
 
 export function useKeyPress(target: string[], event: (pressed: boolean) => void) {
+  console.log('useKeyPress render');
   useEffect(() => {
+    console.log('useKeyPress useEffect');
     const downHandler = ({ key }: KeyboardEvent) => target.indexOf(key) !== -1 && event(true)
     const upHandler = ({ key }: KeyboardEvent) => target.indexOf(key) !== -1 && event(false)
     window.addEventListener('keydown', downHandler)
     window.addEventListener('keyup', upHandler)
     return () => {
+      console.log('useKeyPress cleanup');
       window.removeEventListener('keydown', downHandler)
       window.removeEventListener('keyup', upHandler)
     }
-  }, [])
+  }, [target, event]);
 }
 
 export function useKeyControls() {

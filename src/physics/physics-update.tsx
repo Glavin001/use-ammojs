@@ -20,6 +20,22 @@ const inverse = new Matrix4();
 const matrix = new Matrix4();
 const scale = new Vector3();
 
+function useFastFrame(callback: Function, timeout: number = 1) {
+    // const { clock } = useThree();
+    const callbackRef = useRef(callback)
+    callbackRef.current = callback
+    useEffect(() => {
+      const i = setInterval(() => {
+        callbackRef.current({
+          // clock
+        });
+      }, timeout)
+      return () => {
+        clearInterval(i)
+      }
+    }, []);
+}
+
 export function PhysicsUpdate({
   physicsState,
   sharedBuffersRef,
@@ -27,6 +43,8 @@ export function PhysicsUpdate({
   physicsPerformanceInfoRef,
 }: PhysicsUpdateProps) {
   useFrame(() => {
+  // setInterval(() => {
+  // useFastFrame(() => {
     if (!physicsState) {
       return;
     }
@@ -60,6 +78,7 @@ export function PhysicsUpdate({
       physicsPerformanceInfoRef.current.fps =
         sharedBuffers.rigidBodies.headerFloatArray[3];
 
+      // console.log('headerFloatArray', sharedBuffers.rigidBodies);
       while (threadSafeQueueRef.current.length) {
         const fn = threadSafeQueueRef.current.shift();
         fn!();
@@ -167,6 +186,7 @@ export function PhysicsUpdate({
       }
       Atomics.store(debugIndex, 0, 0);
     }
+  // }, 1);
   });
 
   return null;

@@ -27,7 +27,8 @@ function App() {
                 >
                     <Scene isVr={isVr} />
                     <OrbitControls />
-                    <ambientLight intensity={0.5} />
+                    <ambientLight intensity={0.5} castShadow />
+                    <pointLight position={[0, 0, 0]} castShadow />
                     <spotLight position={[1, 8, 1]} angle={0.3} penumbra={1} intensity={1} castShadow />
                     <Stats />
                     <PhysicsStats top={48} />
